@@ -28,6 +28,12 @@ enum EnrollmentStatus {
   EXPIRED
 }
 
+enum ApplicationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 model User {
   id                   String            @id @default(uuid())
   email                String            @unique
@@ -54,6 +60,7 @@ model User {
   wishlists            Wishlist[]
   notifications        Notification[]
   certificates         Certificate[]
+  instructorApplications InstructorApplication[]
 
   @@index([email])
   @@index([role])
@@ -318,3 +325,30 @@ model PlatformSetting {
   allowCourseSelfPublish     Boolean  @default(true)
   updatedAt                  DateTime @updatedAt
 }
+
+model InstructorApplication {
+  id              String            @id @default(uuid())
+  userId          String
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name            String
+  email           String
+  bio             String
+  expertise       String
+  experienceYears Int               @default(1)
+  headline        String?
+  website         String?
+  github          String?
+  linkedin        String?
+  message         String?
+  status          ApplicationStatus @default(PENDING)
+  rejectionReason String?
+  reviewedAt      DateTime?
+  reviewedBy      String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([email])
+}
+

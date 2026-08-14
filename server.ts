@@ -130,8 +130,18 @@ Sitemap: /sitemap.xml
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  app.listen(PORT, '0.0.0.0', async () => {
     console.log(`[EdTech Platform Backend] Server running on http://0.0.0.0:${PORT}`);
+    try {
+      const userCount = await prisma.user.count();
+      if (userCount === 0) {
+        console.log('[Database] Auto-seeding initial platform accounts and catalog...');
+        const { seedDatabase } = await import('./prisma/seed.js');
+        await seedDatabase();
+      }
+    } catch (dbErr) {
+      console.warn('[Database] Startup check warning:', dbErr);
+    }
   });
 }
 
