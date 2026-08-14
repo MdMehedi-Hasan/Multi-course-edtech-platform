@@ -1,0 +1,320 @@
+// Prisma Schema for EduNexus EdTech Platform
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+  EXPIRED
+}
+
+model User {
+  id                   String            @id @default(uuid())
+  email                String            @unique
+  passwordHash         String
+  role                 Role              @default(STUDENT)
+  isVerified           Boolean           @default(false)
+  isInstructorApproved Boolean           @default(true)
+  isSuspended          Boolean           @default(false)
+  suspensionReason     String?
+  verificationToken    String?
+  resetPasswordToken   String?
+  resetPasswordExpires DateTime?
+  deletedAt            DateTime?
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+
+  profile              Profile?
+  refreshTokens        RefreshToken[]
+  authoredCourses      Course[]          @relation("AuthoredCourses")
+  enrollments          Enrollment[]
+  lessonProgresses     LessonProgress[]
+  courseProgresses     CourseProgress[]
+  reviews              Review[]
+  wishlists            Wishlist[]
+  notifications        Notification[]
+  certificates         Certificate[]
+
+  @@index([email])
+  @@index([role])
+}
+
+model Profile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String
+  headline  String?
+  bio       String?
+  avatarUrl String?
+  website   String?
+  github    String?
+  linkedin  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RefreshToken {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token           String   @unique
+  expiresAt       DateTime
+  isRevoked       Boolean  @default(false)
+  replacedByToken String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([userId])
+  @@index([token])
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String?
+  iconName    String?
+  isActive    Boolean  @default(true)
+  orderIndex  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  courses     Course[]
+
+  @@index([slug])
+}
+
+model Course {
+  id               String            @id @default(uuid())
+  title            String
+  slug             String            @unique
+  shortDescription String
+  description      String
+  thumbnailUrl     String?
+  price            Float             @default(0)
+  level            CourseLevel       @default(BEGINNER)
+  isPublished      Boolean           @default(true)
+  isApproved       Boolean           @default(true)
+  isFeatured       Boolean           @default(false)
+  isArchived       Boolean           @default(false)
+  instructorId     String
+  instructor       User              @relation("AuthoredCourses", fields: [instructorId], references: [id], onDelete: Cascade)
+  categoryId       String
+  category         Category          @relation(fields: [categoryId], references: [id])
+  deletedAt        DateTime?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  sections         CourseSection[]
+  enrollments      Enrollment[]
+  courseProgresses CourseProgress[]
+  reviews          Review[]
+  wishlists        Wishlist[]
+  certificates     Certificate[]
+
+  @@index([slug])
+  @@index([instructorId])
+  @@index([categoryId])
+  @@index([isPublished])
+}
+
+model CourseSection {
+  id        String   @id @default(uuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title     String
+  orderIndex Int     @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  lessons   Lesson[]
+
+  @@index([courseId])
+}
+
+model Lesson {
+  id              String            @id @default(uuid())
+  sectionId       String
+  section         CourseSection     @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  title           String
+  durationMinutes Int               @default(10)
+  videoUrl        String?
+  content         String?
+  downloadableUrl String?
+  externalUrl     String?
+  isFreePreview   Boolean           @default(false)
+  orderIndex      Int               @default(0)
+  deletedAt       DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  lessonProgresses LessonProgress[]
+
+  @@index([sectionId])
+}
+
+model Enrollment {
+  id          String           @id @default(uuid())
+  userId      String
+  user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId    String
+  course      Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  status      EnrollmentStatus @default(ACTIVE)
+  expiresAt   DateTime?
+  progress    Float            @default(0)
+  enrolledAt  DateTime         @default(now())
+  completedAt DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+  @@index([status])
+}
+
+model LessonProgress {
+  id             String    @id @default(uuid())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId       String
+  lesson         Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  isCompleted    Boolean   @default(false)
+  watchedSeconds Int       @default(0)
+  completedAt    DateTime?
+  lastAccessedAt DateTime  @default(now()) @updatedAt
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([userId, lessonId])
+  @@index([userId])
+  @@index([lessonId])
+}
+
+model Certificate {
+  id              String   @id @default(uuid())
+  certificateCode String   @unique
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId        String
+  course          Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  studentName     String
+  courseTitle     String
+  instructorName  String
+  issuedAt        DateTime @default(now())
+  createdAt       DateTime @default(now())
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+  @@index([certificateCode])
+}
+
+model CourseProgress {
+  id                   String   @id @default(uuid())
+  userId               String
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId             String
+  course               Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  completedLessonsCount Int     @default(0)
+  totalLessonsCount    Int      @default(0)
+  percentComplete      Float    @default(0)
+  updatedAt            DateTime @updatedAt
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+}
+
+model Review {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  rating      Int      // 1 to 5
+  comment     String
+  isReported  Boolean  @default(false)
+  reportReason String?
+  isModerated Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+  @@index([isReported])
+}
+
+model Wishlist {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  linkUrl   String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([isRead])
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  actorId   String?
+  actorEmail String
+  action    String
+  target    String
+  metadata  String?
+  createdAt DateTime @default(now())
+
+  @@index([actorEmail])
+  @@index([action])
+  @@index([createdAt])
+}
+
+model PlatformSetting {
+  id                         String   @id @default("default")
+  siteName                   String   @default("EduNexus")
+  supportEmail               String   @default("admin@ednexus.edu")
+  requireInstructorApproval Boolean  @default(false)
+  enableRegistrations        Boolean  @default(true)
+  maintenanceMode            Boolean  @default(false)
+  allowCourseSelfPublish     Boolean  @default(true)
+  updatedAt                  DateTime @updatedAt
+}

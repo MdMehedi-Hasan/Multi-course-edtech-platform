@@ -1,0 +1,6 @@
+{
+  "name": "EdTech Platform",
+  "description": "Production-ready EdTech learning management platform with Student, Instructor, and Admin portals.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
