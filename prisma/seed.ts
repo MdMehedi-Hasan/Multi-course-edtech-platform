@@ -216,6 +216,111 @@ export async function seedDatabase() {
     },
   });
 
+  await prisma.course.upsert({
+    where: { slug: 'javascript-bangla-tutorial-beginner-to-dom' },
+    update: {},
+    create: {
+      title: 'JavaScript Bangla Tutorial: Beginner to DOM',
+      slug: 'javascript-bangla-tutorial-beginner-to-dom',
+      shortDescription: 'A structured Bengali-friendly JavaScript journey from first principles to interactive browser projects.',
+      description: 'Build a strong JavaScript foundation through a practical sequence covering syntax, control flow, functions, arrays, objects, the browser DOM, events, and a final interactive project. This course follows the progression of the referenced JavaScript tutorial playlist while using original lesson structure and explanations.',
+      thumbnailUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb1CB1OGY89pb3x08iKI8Z-exLhUyzNTrYzBdFuaSIaA&s',
+      price: 0,
+      level: CourseLevel.BEGINNER,
+      isPublished: true,
+      instructorId: instructorUser.id,
+      categoryId: catTech.id,
+      sections: {
+        create: [
+          {
+            title: 'Section 1: JavaScript Foundations',
+            orderIndex: 0,
+            lessons: {
+              create: [
+                { title: '1. What JavaScript Does in the Browser', durationMinutes: 12, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', isFreePreview: true, orderIndex: 0 },
+                { title: '2. Adding JavaScript to an HTML Page', durationMinutes: 14, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', orderIndex: 1 },
+                { title: '3. Variables, Values, and Data Types', durationMinutes: 18, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', orderIndex: 2 },
+              ],
+            },
+          },
+          {
+            title: 'Section 2: Operators and Control Flow',
+            orderIndex: 1,
+            lessons: {
+              create: [
+                { title: '4. Operators and Expressions', durationMinutes: 16, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', orderIndex: 0 },
+                { title: '5. Conditions with if, else, and switch', durationMinutes: 20, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', orderIndex: 1 },
+                { title: '6. Repeating Work with Loops', durationMinutes: 22, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', orderIndex: 2 },
+              ],
+            },
+          },
+          {
+            title: 'Section 3: Functions and Reusable Logic',
+            orderIndex: 2,
+            lessons: {
+              create: [
+                { title: '7. Writing and Calling Functions', durationMinutes: 19, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', orderIndex: 0 },
+                { title: '8. Parameters, Return Values, and Scope', durationMinutes: 21, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', orderIndex: 1 },
+                { title: '9. Arrow Functions and Modern Syntax', durationMinutes: 17, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', orderIndex: 2 },
+              ],
+            },
+          },
+          {
+            title: 'Section 4: Arrays and Objects',
+            orderIndex: 3,
+            lessons: {
+              create: [
+                { title: '10. Arrays and Indexed Collections', durationMinutes: 20, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', orderIndex: 0 },
+                { title: '11. Array Methods for Everyday Problems', durationMinutes: 24, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', orderIndex: 1 },
+                { title: '12. Objects, Properties, and Nested Data', durationMinutes: 23, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', orderIndex: 2 },
+              ],
+            },
+          },
+          {
+            title: 'Section 5: DOM and Browser Interaction',
+            orderIndex: 4,
+            lessons: {
+              create: [
+                { title: '13. Understanding the DOM Tree', durationMinutes: 18, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', orderIndex: 0 },
+                { title: '14. Selecting and Updating Elements', durationMinutes: 22, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', orderIndex: 1 },
+                { title: '15. Events, Forms, and User Input', durationMinutes: 25, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4', orderIndex: 2 },
+              ],
+            },
+          },
+          {
+            title: 'Section 6: Capstone Project',
+            orderIndex: 5,
+            lessons: {
+              create: [
+                { title: '16. Plan a Browser-Based To-Do App', durationMinutes: 15, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', orderIndex: 0 },
+                { title: '17. Build the Interactive Features', durationMinutes: 28, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', orderIndex: 1 },
+                { title: '18. Review, Debug, and Extend the Project', durationMinutes: 20, videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4', orderIndex: 2 },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  });
+
+  const javascriptLessonVideoIds = [
+    'rePN-VFo1Eo', 'lb7wT1gVU7Y', 'PHy8h0BixKA', 'vXHefJiJM24', 'xWujZw0yIqg', 'bH-xZqvPk8A',
+    '5WXXBGjmsiA', 'HS6nkKeuP_M', 'DZHb10fzbOQ', 'UzPsbiJjqsA', 'ZwzOEK8KTWY', '55qObA3f9lw',
+    'o-wx8CJ8W2g', 'WWhlEWOf2ww', 'TUl3pl5ODcU', 'AQwWeKrdB58', 'Po7yLhlBudg', 'KobnEBz0zs4',
+  ];
+  const javascriptLessons = await prisma.lesson.findMany({
+    where: { section: { course: { slug: 'javascript-bangla-tutorial-beginner-to-dom' } } },
+    orderBy: [{ section: { orderIndex: 'asc' } }, { orderIndex: 'asc' }],
+  });
+  await Promise.all(
+    javascriptLessons.slice(0, javascriptLessonVideoIds.length).map((lesson, index) =>
+      prisma.lesson.update({
+        where: { id: lesson.id },
+        data: { externalUrl: `https://www.youtube.com/watch?v=${javascriptLessonVideoIds[index]}` },
+      })
+    )
+  );
+
   // 4. Enroll Student in Course 1
   await prisma.enrollment.upsert({
     where: {

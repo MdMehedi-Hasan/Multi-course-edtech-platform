@@ -74,6 +74,7 @@ router.get('/', async (req, res: Response): Promise<void> => {
         slug: c.slug,
         shortDescription: c.shortDescription,
         description: c.description,
+        thumbnailUrl: c.thumbnailUrl,
         price: c.price,
         level: c.level,
         isPublished: c.isPublished,
@@ -156,6 +157,7 @@ router.get('/:courseId', optionalAuthenticate, async (req: AuthenticatedRequest,
         orderIndex: l.orderIndex,
         // Protected lessons explicitly hide video URLs
         videoUrl: l.isFreePreview ? l.videoUrl : null,
+        externalUrl: l.externalUrl,
       })),
     }));
 
@@ -167,6 +169,7 @@ router.get('/:courseId', optionalAuthenticate, async (req: AuthenticatedRequest,
         slug: course.slug,
         shortDescription: course.shortDescription,
         description: course.description,
+        thumbnailUrl: course.thumbnailUrl,
         price: course.price,
         level: course.level,
         isPublished: course.isPublished,

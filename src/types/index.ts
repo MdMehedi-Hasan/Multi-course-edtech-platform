@@ -28,6 +28,7 @@ export interface Lesson {
   title: string;
   description: string;
   videoUrl: string;
+  externalUrl?: string;
   duration: number; // seconds
   order: number;
   isFreePreview: boolean;

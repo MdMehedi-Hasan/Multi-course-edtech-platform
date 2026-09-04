@@ -52,10 +52,16 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
   // Debounce/Throttle progress saving ref
   const lastSavedTimeRef = useRef<number>(0);
 
+  const getYoutubeEmbedUrl = (url?: string) => {
+    if (!url) return null;
+    const match = url.match(/[?&]v=([^&]+)/) || url.match(/youtu\.be\/([^?&]+)/);
+    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+  };
+
   useEffect(() => {
     async function loadLessonData() {
       try {
-        setIsLoading(true);
+        setIsLoading(!data);
         setAccessDeniedMsg(null);
         const res = await api.getStudentLesson(courseId, lessonId);
         setData(res);
@@ -169,7 +175,7 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
     setUserNote('');
   };
 
-  if (isLoading) {
+  if (isLoading && !data) {
     return (
       <div className="flex items-center justify-center min-h-[500px]">
         <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
@@ -199,7 +205,7 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
     );
   }
 
-  const { lesson, course, sections = [], nextLessonId, prevLessonId, userProgress } = data?.data || {};
+  const { lesson, course, sections = [], nextLessonId, prevLessonId, userProgress } = data || {};
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
@@ -246,7 +252,7 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
               <BookOpen className="w-4 h-4 text-indigo-400" /> Course Content
             </span>
             <span className="text-[11px] font-bold text-emerald-400">
-              {data?.data?.overallCourseProgress || 0}% Complete
+              {data?.overallCourseProgress || 0}% Complete
             </span>
           </div>
 
@@ -291,19 +297,29 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
         <div className="flex-1 flex flex-col overflow-y-auto bg-slate-950">
           {/* Video Player Box */}
           <div className="relative bg-black w-full aspect-video max-h-[500px] flex items-center justify-center group border-b border-slate-800">
-            <video
-              ref={videoRef}
-              src={lesson?.videoUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
-              onTimeUpdate={handleTimeUpdate}
-              onLoadedMetadata={() => {
-                if (videoRef.current) setDuration(videoRef.current.duration);
-              }}
-              onEnded={handleVideoEnded}
-              className="w-full h-full object-contain"
-            />
+            {getYoutubeEmbedUrl(lesson?.externalUrl) ? (
+              <iframe
+                title={lesson?.title || 'Course lesson'}
+                src={getYoutubeEmbedUrl(lesson?.externalUrl) || undefined}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            ) : (
+              <video
+                ref={videoRef}
+                src={lesson?.videoUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+                onTimeUpdate={handleTimeUpdate}
+                onLoadedMetadata={() => {
+                  if (videoRef.current) setDuration(videoRef.current.duration);
+                }}
+                onEnded={handleVideoEnded}
+                className="w-full h-full object-contain"
+              />
+            )}
 
             {/* Custom Video Controls Overlay */}
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col gap-2 opacity-100 group-hover:opacity-100 transition-opacity">
+            <div className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col gap-2 opacity-100 group-hover:opacity-100 transition-opacity ${getYoutubeEmbedUrl(lesson?.externalUrl) ? 'hidden' : ''}`}>
               {/* Timeline bar */}
               <input
                 type="range"

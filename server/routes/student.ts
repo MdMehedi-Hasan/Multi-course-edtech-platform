@@ -433,6 +433,7 @@ router.get(
             title: lesson.title,
             durationMinutes: lesson.durationMinutes,
             videoUrl: lesson.videoUrl,
+            externalUrl: lesson.externalUrl,
             isFreePreview: lesson.isFreePreview,
           },
           userProgress: {

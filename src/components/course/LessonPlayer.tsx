@@ -16,11 +16,17 @@ export const LessonPlayer: React.FC<LessonPlayerProps> = ({
   onMarkLessonComplete,
   isUpdatingProgress = false,
 }) => {
-  const lessons = course.lessons || [];
+  const lessons = course.lessons || course.sections?.flatMap((section) => section.lessons) || [];
   const [activeLessonIndex, setActiveLessonIndex] = useState(0);
 
   const activeLesson = lessons[activeLessonIndex] || lessons[0];
   const isEnrolled = !!enrollment;
+
+  const getYoutubeEmbedUrl = (url?: string) => {
+    if (!url) return null;
+    const match = url.match(/[?&]v=([^&]+)/) || url.match(/youtu\.be\/([^?&]+)/);
+    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+  };
 
   const isCompleted = (lessonId: string) => {
     return enrollment?.completedLessonIds.includes(lessonId) || false;
@@ -37,7 +43,15 @@ export const LessonPlayer: React.FC<LessonPlayerProps> = ({
       {/* Video Player & Info Column */}
       <div className="lg:col-span-2 flex flex-col gap-4">
         <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-xl border border-slate-800">
-          {activeLesson ? (
+          {activeLesson && getYoutubeEmbedUrl(activeLesson.externalUrl) ? (
+            <iframe
+              title={activeLesson.title}
+              className="w-full h-full"
+              src={getYoutubeEmbedUrl(activeLesson.externalUrl) || undefined}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          ) : activeLesson ? (
             <video
               key={activeLesson.id}
               controls
