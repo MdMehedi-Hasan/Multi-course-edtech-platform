@@ -25,7 +25,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
       description: 'Unlimited access to all courses, curriculums, and certifications.',
       features: ['Unlimited Course Enrollments', 'Interactive Video Player & Bookmarks', 'Completion Certificates', 'Direct Instructor Discussions', 'Downloadable Lesson Resources'],
       buttonText: 'Start Pro Trial',
-      variant: 'primary' as const,
+      variant: 'default' as const,
       popular: true,
     },
     {
@@ -87,7 +87,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
 
               <Button
                 variant={plan.variant}
-                size="md"
+               
                 onClick={() => onNavigate('/register')}
                 className="w-full"
               >

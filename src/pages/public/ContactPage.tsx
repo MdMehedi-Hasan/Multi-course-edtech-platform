@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
@@ -114,7 +114,8 @@ export const ContactPage: React.FC = () => {
                 />
               </div>
 
-              <Button type="submit" variant="primary" size="md" isLoading={isSubmitting} className="gap-2 font-bold px-6">
+              <Button type="submit" variant="default" disabled={isSubmitting} className="gap-2 font-bold px-6">
+                {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
                 <Send className="w-4 h-4" />
                 Submit Inquiry
               </Button>

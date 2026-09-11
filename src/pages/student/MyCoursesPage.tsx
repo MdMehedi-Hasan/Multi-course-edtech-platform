@@ -52,7 +52,7 @@ export const MyCoursesPage: React.FC<MyCoursesPageProps> = ({ onNavigate }) => {
           <p className="text-xs text-slate-500 mt-1">Manage your course enrollments and track your completion progress.</p>
         </div>
 
-        <Button variant="primary" size="md" onClick={() => onNavigate('/courses')} className="gap-2 shrink-0">
+        <Button variant="default" onClick={() => onNavigate('/courses')} className="gap-2 shrink-0">
           <BookOpen className="w-4 h-4" />
           Find More Courses
         </Button>
@@ -113,7 +113,7 @@ export const MyCoursesPage: React.FC<MyCoursesPageProps> = ({ onNavigate }) => {
           <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
             Try adjusting your search query or explore the course catalog to enroll in new skills.
           </p>
-          <Button variant="primary" size="sm" onClick={() => onNavigate('/courses')} className="mt-4">
+          <Button variant="default" size="sm" onClick={() => onNavigate('/courses')} className="mt-4">
             Explore Course Catalog
           </Button>
         </div>
@@ -167,7 +167,7 @@ export const MyCoursesPage: React.FC<MyCoursesPageProps> = ({ onNavigate }) => {
 
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-3">
                   <Button
-                    variant="primary"
+                    variant="default"
                     size="sm"
                     onClick={() =>
                       c.lastAccessedLesson

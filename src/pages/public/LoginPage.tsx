@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, GraduationCap, User, Shield } from 'lucide-react';
+import { BookOpen, GraduationCap, User, Shield, Loader2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { Input } from '../../components/ui/Input';
@@ -179,7 +179,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
             </button>
           </div>
 
-          <Button type="submit" variant="primary" size="lg" isLoading={isSubmitting} className="w-full">
+          <Button type="submit" variant="default" size="lg" disabled={isSubmitting} className="w-full">
+            {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
             Sign In
           </Button>
         </form>

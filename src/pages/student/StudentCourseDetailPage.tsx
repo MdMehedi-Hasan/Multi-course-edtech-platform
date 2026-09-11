@@ -57,7 +57,7 @@ export const StudentCourseDetailPage: React.FC<StudentCourseDetailPageProps> = (
             <Button variant="outline" size="sm" onClick={() => onNavigate('/student/courses')}>
               Back to My Courses
             </Button>
-            <Button variant="primary" size="sm" onClick={() => onNavigate(`/courses/${courseId}`)}>
+            <Button variant="default" size="sm" onClick={() => onNavigate(`/courses/${courseId}`)}>
               View Course Landing Page
             </Button>
           </div>
@@ -146,7 +146,7 @@ export const StudentCourseDetailPage: React.FC<StudentCourseDetailPageProps> = (
                     </div>
 
                     <Button
-                      variant={lesson.isCompleted ? 'outline' : 'primary'}
+                      variant={lesson.isCompleted ? 'outline' : 'default'}
                       size="sm"
                       onClick={() => onNavigate(`/student/learn/${courseId}/${lesson.id}`)}
                       className="text-xs shrink-0 gap-1.5"

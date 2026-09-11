@@ -338,7 +338,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
           </Button>
 
           <Button
-            variant={course.isPublished ? 'outline' : 'primary'}
+            variant={course.isPublished ? 'outline' : 'default'}
             size="sm"
             onClick={handleTogglePublish}
             disabled={isSaving}
@@ -438,7 +438,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                   onChange={(e) => setNewSectionTitle(e.target.value)}
                   className="flex-1 bg-white text-slate-900 p-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500"
                 />
-                <Button type="submit" variant="primary" size="sm" className="text-xs">
+                <Button type="submit" variant="default" size="sm" className="text-xs">
                   Save Section
                 </Button>
                 <Button
@@ -698,7 +698,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
             )}
 
             <div className="pt-4 border-t border-slate-100 flex justify-end">
-              <Button type="submit" variant="primary" size="md" disabled={isSaving} className="text-xs gap-2">
+              <Button type="submit" variant="default" disabled={isSaving} className="text-xs gap-2">
                 <Save className="w-4 h-4" />
                 <span>{isSaving ? 'Saving Changes...' : 'Save Course Settings'}</span>
               </Button>
@@ -807,7 +807,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                 >
                   Cancel
                 </Button>
-                <Button type="submit" variant="primary" size="sm">
+                <Button type="submit" variant="default" size="sm">
                   Save Lesson
                 </Button>
               </div>
@@ -913,7 +913,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                 <Button type="button" variant="outline" size="sm" onClick={() => setEditingLesson(null)}>
                   Cancel
                 </Button>
-                <Button type="submit" variant="primary" size="sm">
+                <Button type="submit" variant="default" size="sm">
                   Update Lesson
                 </Button>
               </div>

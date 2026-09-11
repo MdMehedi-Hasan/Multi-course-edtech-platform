@@ -158,7 +158,7 @@ export const AdminCoursesPage: React.FC<AdminCoursesPageProps> = ({ onNavigate }
             <option value="draft">Drafts</option>
           </select>
 
-          <Button type="submit" variant="primary" size="sm">Search</Button>
+          <Button type="submit" variant="default" size="sm">Search</Button>
         </form>
       </Card>
 

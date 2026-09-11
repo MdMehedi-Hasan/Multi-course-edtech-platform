@@ -111,7 +111,7 @@ export const FAQPage: React.FC<FAQPageProps> = ({ onNavigate }) => {
           <MessageSquare className="w-8 h-8 text-indigo-600 mx-auto mb-3" />
           <h3 className="font-bold text-slate-900 text-base mb-1">Still Have Questions?</h3>
           <p className="text-xs text-slate-500 mb-6">Our dedicated support team is available 24/7 to assist you.</p>
-          <Button variant="primary" size="md" onClick={() => onNavigate('/contact')}>
+          <Button variant="default" onClick={() => onNavigate('/contact')}>
             Contact Support Team
           </Button>
         </div>

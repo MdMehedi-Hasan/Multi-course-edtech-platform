@@ -181,8 +181,8 @@ export const StudentReviewsPage: React.FC<StudentReviewsPageProps> = ({ onNaviga
 
                 <Button
                   type="submit"
-                  variant="primary"
-                  size="md"
+                  variant="default"
+                 
                   disabled={isSubmitting}
                   className="w-full text-xs"
                 >

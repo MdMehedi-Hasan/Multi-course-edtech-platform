@@ -225,7 +225,7 @@ export const InstructorCourseCreatePage: React.FC<InstructorCourseCreatePageProp
             <Button
               type="button"
               variant="outline"
-              size="md"
+             
               onClick={() => onNavigate('/instructor/courses')}
               className="text-xs"
             >
@@ -233,8 +233,8 @@ export const InstructorCourseCreatePage: React.FC<InstructorCourseCreatePageProp
             </Button>
             <Button
               type="submit"
-              variant="primary"
-              size="md"
+              variant="default"
+             
               disabled={isSubmitting}
               className="text-xs gap-2"
             >

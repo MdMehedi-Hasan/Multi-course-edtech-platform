@@ -100,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPath }) => {
             {user ? (
               <div className="flex items-center gap-2.5">
                 <Button
-                  variant="primary"
+                  variant="default"
                   size="sm"
                   onClick={() => onNavigate(getDashboardPath())}
                   className="flex items-center gap-1.5 shadow-sm text-xs font-semibold px-3.5 py-2"
@@ -194,7 +194,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPath }) => {
                 <Button variant="ghost" size="sm" onClick={() => onNavigate('/login')}>
                   Sign In
                 </Button>
-                <Button variant="primary" size="sm" onClick={() => onNavigate('/register')}>
+                <Button variant="default" size="sm" onClick={() => onNavigate('/register')}>
                   Get Started
                 </Button>
               </div>

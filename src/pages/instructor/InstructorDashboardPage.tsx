@@ -75,8 +75,8 @@ export const InstructorDashboardPage: React.FC<InstructorDashboardPageProps> = (
         </div>
 
         <Button
-          variant="primary"
-          size="md"
+          variant="default"
+         
           onClick={() => onNavigate('/instructor/courses/create')}
           className="gap-2 shrink-0 bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold border-none"
         >

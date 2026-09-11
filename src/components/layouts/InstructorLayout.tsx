@@ -64,7 +64,7 @@ export const InstructorLayout: React.FC<InstructorLayoutProps> = ({
 
         <div className="flex items-center gap-3">
           <Button
-            variant="primary"
+            variant="default"
             size="sm"
             onClick={() => onNavigate('/instructor/courses/create')}
             className="hidden sm:flex items-center gap-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs"

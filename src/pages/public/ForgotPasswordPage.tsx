@@ -53,7 +53,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordPageProps> = ({ onNaviga
               onChange={(e) => setEmail(e.target.value)}
             />
 
-            <Button type="submit" variant="primary" size="lg" className="w-full">
+            <Button type="submit" variant="default" size="lg" className="w-full">
               Send Reset Link
             </Button>
           </form>

@@ -172,7 +172,7 @@ export const AdminSettingsPage: React.FC = () => {
           </div>
 
           <div className="pt-3">
-            <Button type="submit" variant="primary" className="w-full py-2.5" disabled={isSaving}>
+            <Button type="submit" variant="default" className="w-full py-2.5" disabled={isSaving}>
               <Save className="w-4 h-4 mr-2" />
               {isSaving ? 'Saving System Configuration...' : 'Save Configuration Parameters'}
             </Button>

@@ -188,7 +188,7 @@ export const AdminUsersPage: React.FC<AdminUsersPageProps> = () => {
               <option value="deleted">Deactivated Users</option>
             </select>
 
-            <Button type="submit" variant="primary" size="sm">
+            <Button type="submit" variant="default" size="sm">
               Search
             </Button>
           </div>
@@ -441,7 +441,7 @@ export const AdminUsersPage: React.FC<AdminUsersPageProps> = () => {
               <Button variant="ghost" size="sm" onClick={() => setRoleChangeUser(null)}>
                 Cancel
               </Button>
-              <Button variant="primary" size="sm" onClick={handleRoleUpdate}>
+              <Button variant="default" size="sm" onClick={handleRoleUpdate}>
                 Update Role
               </Button>
             </div>
@@ -478,7 +478,7 @@ export const AdminUsersPage: React.FC<AdminUsersPageProps> = () => {
                 Cancel
               </Button>
               <Button
-                variant={suspendingUser.isSuspended ? 'primary' : 'danger'}
+                variant={suspendingUser.isSuspended ? 'default' : 'destructive'}
                 size="sm"
                 onClick={handleStatusToggle}
               >

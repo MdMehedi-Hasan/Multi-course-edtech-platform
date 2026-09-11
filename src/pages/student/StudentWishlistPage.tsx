@@ -60,7 +60,7 @@ export const StudentWishlistPage: React.FC<StudentWishlistPageProps> = ({ onNavi
           <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
             Browse our course catalog and bookmark courses to keep track of topics you plan to study.
           </p>
-          <Button variant="primary" size="sm" onClick={() => onNavigate('/courses')} className="mt-4">
+          <Button variant="default" size="sm" onClick={() => onNavigate('/courses')} className="mt-4">
             Explore Courses
           </Button>
         </Card>
@@ -90,7 +90,7 @@ export const StudentWishlistPage: React.FC<StudentWishlistPageProps> = ({ onNavi
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
                 <span className="font-extrabold text-slate-900 text-base">${item.course?.price}</span>
                 <Button
-                  variant="primary"
+                  variant="default"
                   size="sm"
                   onClick={() => onNavigate(`/courses/${item.course?.slug || item.courseId}`)}
                   className="text-xs gap-1"

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, CheckCircle2, Circle, Lock, Award, BookOpen, Clock } from 'lucide-react';
+import { Play, CheckCircle2, Circle, Lock, Award, BookOpen, Clock, Loader2 } from 'lucide-react';
 import { Course, Lesson, Enrollment } from '../../types/index';
 import { Button } from '../ui/Button';
 
@@ -77,12 +77,13 @@ export const LessonPlayer: React.FC<LessonPlayerProps> = ({
 
             {isEnrolled && (
               <Button
-                variant={isCompleted(activeLesson.id) ? 'outline' : 'primary'}
+                variant={isCompleted(activeLesson.id) ? 'outline' : 'default'}
                 size="sm"
-                isLoading={isUpdatingProgress}
+                disabled={isUpdatingProgress}
                 onClick={() => onMarkLessonComplete(activeLesson.id)}
                 className="shrink-0 gap-2"
               >
+                {isUpdatingProgress && <Loader2 className="w-4 h-4 animate-spin" />}
                 <CheckCircle2 className={`w-4 h-4 ${isCompleted(activeLesson.id) ? 'text-emerald-600' : ''}`} />
                 {isCompleted(activeLesson.id) ? 'Completed' : 'Mark as Complete'}
               </Button>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PlusCircle } from 'lucide-react';
+import { PlusCircle, Loader2 } from 'lucide-react';
 import { api } from '../../lib/api';
 import { useToast } from '../../context/ToastContext';
 import { Category, CourseLevel } from '../../types/index';
@@ -126,7 +126,8 @@ export const CreateCoursePage: React.FC<CreateCoursePageProps> = ({ onNavigate }
           </div>
         </div>
 
-        <Button type="submit" variant="primary" size="lg" isLoading={isSubmitting} className="w-full bg-amber-600 hover:bg-amber-700 mt-4">
+        <Button type="submit" variant="default" size="lg" disabled={isSubmitting} className="w-full bg-amber-600 hover:bg-amber-700 mt-4">
+          {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
           Publish Course
         </Button>
       </form>

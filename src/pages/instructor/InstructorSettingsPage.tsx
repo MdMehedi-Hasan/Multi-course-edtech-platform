@@ -117,7 +117,7 @@ export const InstructorSettingsPage: React.FC<InstructorSettingsPageProps> = () 
           </div>
 
           <div className="pt-2 flex justify-end">
-            <Button type="submit" variant="primary" size="sm" disabled={isChangingPass} className="text-xs">
+            <Button type="submit" variant="default" size="sm" disabled={isChangingPass} className="text-xs">
               {isChangingPass ? 'Updating...' : 'Update Password'}
             </Button>
           </div>

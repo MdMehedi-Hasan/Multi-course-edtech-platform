@@ -271,7 +271,7 @@ export const AdminInstructorsPage: React.FC = () => {
                             {app.status === 'PENDING' && (
                               <>
                                 <Button
-                                  variant="primary"
+                                  variant="default"
                                   size="sm"
                                   onClick={() => handleReviewApplication(app.id, 'APPROVE')}
                                   className="text-xs bg-emerald-600 hover:bg-emerald-700 text-white"
@@ -377,7 +377,7 @@ export const AdminInstructorsPage: React.FC = () => {
                       <td className="px-5 py-4 text-right">
                         <div className="flex items-center justify-end gap-2">
                           <Button
-                            variant={inst.isInstructorApproved ? 'outline' : 'primary'}
+                            variant={inst.isInstructorApproved ? 'outline' : 'default'}
                             size="sm"
                             onClick={() => handleApproveToggle(inst.id, inst.isInstructorApproved)}
                           >
@@ -494,7 +494,7 @@ export const AdminInstructorsPage: React.FC = () => {
                   Reject Application
                 </Button>
                 <Button
-                  variant="primary"
+                  variant="default"
                   size="sm"
                   onClick={() => handleReviewApplication(selectedApplication.id, 'APPROVE')}
                   className="bg-emerald-600 hover:bg-emerald-700 text-white"
@@ -529,7 +529,7 @@ export const AdminInstructorsPage: React.FC = () => {
                 Cancel
               </Button>
               <Button
-                variant="primary"
+                variant="default"
                 size="sm"
                 className="bg-rose-600 hover:bg-rose-700 text-white"
                 onClick={() => handleReviewApplication(rejectingAppId, 'REJECT', rejectionReason)}

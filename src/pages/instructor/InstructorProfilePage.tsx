@@ -221,7 +221,7 @@ export const InstructorProfilePage: React.FC<InstructorProfilePageProps> = () =>
           </div>
 
           <div className="pt-4 border-t border-slate-100 flex justify-end">
-            <Button type="submit" variant="primary" size="md" disabled={isSaving} className="text-xs gap-2">
+            <Button type="submit" variant="default" disabled={isSaving} className="text-xs gap-2">
               <Save className="w-4 h-4" />
               <span>{isSaving ? 'Saving...' : 'Save Profile Changes'}</span>
             </Button>

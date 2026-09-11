@@ -193,10 +193,10 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
           <h2 className="text-xl font-extrabold text-slate-900">Enrollment Required</h2>
           <p className="text-xs text-slate-600 leading-relaxed">{accessDeniedMsg}</p>
           <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
-            <Button variant="outline" size="md" onClick={() => onNavigate('/student/courses')}>
+            <Button variant="outline" onClick={() => onNavigate('/student/courses')}>
               Back to My Courses
             </Button>
-            <Button variant="primary" size="md" onClick={() => onNavigate(`/courses/${courseId}`)}>
+            <Button variant="default" onClick={() => onNavigate(`/courses/${courseId}`)}>
               Enroll in Course
             </Button>
           </div>
@@ -229,7 +229,7 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
 
         <div className="flex items-center gap-3 shrink-0">
           <Button
-            variant={userProgress?.isCompleted ? 'primary' : 'outline'}
+            variant={userProgress?.isCompleted ? 'default' : 'outline'}
             size="sm"
             onClick={handleManualCompleteToggle}
             disabled={isSavingProgress}
@@ -387,7 +387,7 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
             </span>
 
             <Button
-              variant="primary"
+              variant="default"
               size="sm"
               disabled={!nextLessonId}
               onClick={() => nextLessonId && onNavigate(`/student/learn/${courseId}/${nextLessonId}`)}
@@ -455,7 +455,7 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
                     onChange={(e) => setUserNote(e.target.value)}
                     className="w-full bg-slate-900 text-slate-200 p-3 text-xs rounded-xl border border-slate-800 focus:outline-none focus:border-indigo-500"
                   />
-                  <Button type="submit" variant="primary" size="sm" className="text-xs">
+                  <Button type="submit" variant="default" size="sm" className="text-xs">
                     Save Timestamped Note
                   </Button>
                 </form>

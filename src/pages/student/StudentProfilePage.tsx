@@ -187,7 +187,7 @@ export const StudentProfilePage: React.FC<StudentProfilePageProps> = ({ onNaviga
               </div>
 
               <div className="pt-4 flex justify-end">
-                <Button type="submit" variant="primary" size="md" disabled={isSaving} className="gap-2 text-xs">
+                <Button type="submit" variant="default" disabled={isSaving} className="gap-2 text-xs">
                   <Save className="w-4 h-4" />
                   <span>{isSaving ? 'Saving Changes...' : 'Save Profile Changes'}</span>
                 </Button>

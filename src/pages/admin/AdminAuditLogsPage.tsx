@@ -70,7 +70,7 @@ export const AdminAuditLogsPage: React.FC = () => {
             <option value="SETTINGS_UPDATE">SETTINGS_UPDATE</option>
           </select>
 
-          <Button type="submit" variant="primary" size="sm">Search</Button>
+          <Button type="submit" variant="default" size="sm">Search</Button>
         </form>
       </Card>
 

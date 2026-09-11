@@ -143,8 +143,8 @@ export const StudentSettingsPage: React.FC<StudentSettingsPageProps> = () => {
 
           <Button
             type="submit"
-            variant="primary"
-            size="md"
+            variant="default"
+           
             disabled={isUpdatingPassword}
             className="text-xs"
           >

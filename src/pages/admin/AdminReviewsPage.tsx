@@ -53,21 +53,21 @@ export const AdminReviewsPage: React.FC = () => {
 
       <Card className="p-4 flex gap-2">
         <Button
-          variant={filter === 'all' ? 'primary' : 'ghost'}
+          variant={filter === 'all' ? 'default' : 'ghost'}
           size="sm"
           onClick={() => setFilter('all')}
         >
           All Reviews
         </Button>
         <Button
-          variant={filter === 'reported' ? 'primary' : 'ghost'}
+          variant={filter === 'reported' ? 'default' : 'ghost'}
           size="sm"
           onClick={() => setFilter('reported')}
         >
           Flagged / Reported
         </Button>
         <Button
-          variant={filter === 'moderated' ? 'primary' : 'ghost'}
+          variant={filter === 'moderated' ? 'default' : 'ghost'}
           size="sm"
           onClick={() => setFilter('moderated')}
         >

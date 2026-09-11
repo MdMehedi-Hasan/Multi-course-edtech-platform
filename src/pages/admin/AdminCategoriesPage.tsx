@@ -116,7 +116,7 @@ export const AdminCategoriesPage: React.FC = () => {
           <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Taxonomy & Category Management</h1>
           <p className="text-xs text-slate-500 mt-1">Organize course taxonomy, manage custom tags, reorder hierarchy, and safeguard relationship data integrity.</p>
         </div>
-        <Button variant="primary" size="sm" onClick={() => handleOpenModal()}>
+        <Button variant="default" size="sm" onClick={() => handleOpenModal()}>
           <Plus className="w-4 h-4 mr-1.5" /> Add New Category
         </Button>
       </div>
@@ -284,7 +284,7 @@ export const AdminCategoriesPage: React.FC = () => {
                 <Button type="button" variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>
                   Cancel
                 </Button>
-                <Button type="submit" variant="primary" size="sm">
+                <Button type="submit" variant="default" size="sm">
                   {editingCategory ? 'Save Changes' : 'Create Category'}
                 </Button>
               </div>

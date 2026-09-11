@@ -49,7 +49,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             </div>
           </div>
 
-          <div className="hidden md:block h-5 w-[1px] bg-slate-800" />
+          <div className="hidden md:block h-5 w-px bg-slate-800" />
 
           {/* Return to Public Website link */}
           <button
@@ -74,7 +74,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                 className="w-8 h-8 rounded-full object-cover border border-purple-500/40"
               />
               <div className="hidden sm:flex flex-col text-left pr-1">
-                <span className="text-xs font-bold text-slate-200 leading-tight truncate max-w-[130px]">
+                <span className="text-xs font-bold text-slate-200 leading-tight truncate max-w-32.5">
                   {user?.name}
                 </span>
                 <span className="text-[10px] font-semibold text-purple-400">Super Administrator</span>

@@ -11,6 +11,7 @@ import {
   Award,
   ArrowRight,
   AlertCircle,
+  Loader2,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
@@ -153,7 +154,7 @@ export const BecomeInstructorPage: React.FC<BecomeInstructorPageProps> = ({ onNa
                 <p className="text-xs text-emerald-700">Your account already has full course authoring and studio privileges.</p>
               </div>
             </div>
-            <Button variant="primary" onClick={() => onNavigate('/instructor/dashboard')}>
+            <Button variant="default" onClick={() => onNavigate('/instructor/dashboard')}>
               Go to Instructor Studio <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>
           </div>
@@ -207,7 +208,7 @@ export const BecomeInstructorPage: React.FC<BecomeInstructorPageProps> = ({ onNa
                     <p className="text-xs text-emerald-800">
                       Congratulations! Your instructor application has been approved by the platform administrator.
                     </p>
-                    <Button variant="primary" size="sm" onClick={() => onNavigate('/instructor/dashboard')}>
+                    <Button variant="default" size="sm" onClick={() => onNavigate('/instructor/dashboard')}>
                       Launch Instructor Studio <ArrowRight className="w-4 h-4 ml-1.5" />
                     </Button>
                   </div>
@@ -345,11 +346,12 @@ export const BecomeInstructorPage: React.FC<BecomeInstructorPageProps> = ({ onNa
                 </p>
                 <Button
                   type="submit"
-                  variant="primary"
+                  variant="default"
                   size="lg"
-                  isLoading={isSubmitting}
+                  disabled={isSubmitting}
                   className="w-full sm:w-auto min-w-[200px] flex items-center justify-center gap-2"
                 >
+                  {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
                   <Send className="w-4 h-4" />
                   Submit Instructor Application
                 </Button>

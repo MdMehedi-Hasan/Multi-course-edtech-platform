@@ -76,7 +76,7 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({ onNa
         </div>
 
         <div className="relative z-10 flex gap-3 shrink-0">
-          <Button variant="primary" size="md" onClick={() => onNavigate('/courses')} className="gap-2">
+          <Button variant="default" onClick={() => onNavigate('/courses')} className="gap-2">
             <BookOpen className="w-4 h-4" />
             Explore Catalog
           </Button>
@@ -172,7 +172,7 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({ onNa
 
               <div className="shrink-0 flex items-center">
                 <Button
-                  variant="primary"
+                  variant="default"
                   size="lg"
                   onClick={() =>
                     continueLearning.nextLessonId
@@ -206,7 +206,7 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({ onNa
           {enrolledCourses.length === 0 ? (
             <Card className="p-8 text-center border-dashed border-slate-300">
               <p className="text-xs text-slate-500 mb-4">You are not enrolled in any courses yet.</p>
-              <Button variant="primary" size="sm" onClick={() => onNavigate('/courses')}>
+              <Button variant="default" size="sm" onClick={() => onNavigate('/courses')}>
                 Browse Courses
               </Button>
             </Card>
@@ -312,7 +312,7 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({ onNa
                 <div className="flex items-center justify-between pt-3 border-t border-slate-100">
                   <span className="font-extrabold text-slate-900 text-sm">${rc.price}</span>
                   <Button
-                    variant="primary"
+                    variant="default"
                     size="sm"
                     onClick={() => onNavigate(`/courses/${rc.slug}`)}
                     className="text-xs"

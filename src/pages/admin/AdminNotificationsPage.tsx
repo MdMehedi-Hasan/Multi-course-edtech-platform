@@ -121,7 +121,7 @@ export const AdminNotificationsPage: React.FC = () => {
           </div>
 
           <div className="pt-2">
-            <Button type="submit" variant="primary" className="w-full py-2.5" disabled={isSending}>
+            <Button type="submit" variant="default" className="w-full py-2.5" disabled={isSending}>
               {isSending ? 'Dispatching Broadcast...' : 'Broadcast Notification Now'}
             </Button>
           </div>

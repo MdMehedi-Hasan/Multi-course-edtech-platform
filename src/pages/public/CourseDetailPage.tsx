@@ -14,6 +14,7 @@ import {
   Sparkles,
   ChevronDown,
   ChevronUp,
+  Loader2,
 } from 'lucide-react';
 import { Course, Enrollment, Review } from '../../types/index';
 import { api } from '../../lib/api';
@@ -241,7 +242,8 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ courseId, on
                 Includes full lifetime access, interactive video curriculum, and verifiable completion certificate.
               </p>
             </div>
-            <Button size="lg" variant="primary" isLoading={isEnrolling} onClick={handleEnroll} className="w-full sm:w-auto font-bold px-8">
+            <Button size="lg" variant="default" disabled={isEnrolling} onClick={handleEnroll} className="w-full sm:w-auto font-bold px-8 gap-2">
+              {isEnrolling && <Loader2 className="w-4 h-4 animate-spin" />}
               Enroll in Course Now
             </Button>
           </div>

@@ -89,8 +89,8 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
         </div>
 
         <Button
-          variant="primary"
-          size="md"
+          variant="default"
+         
           onClick={() => onNavigate('/instructor/courses/create')}
           className="gap-2 text-xs shrink-0"
         >
@@ -156,7 +156,7 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
           <h3 className="text-sm font-bold text-slate-800">No courses match your filter</h3>
           <p className="text-xs text-slate-500 mt-1">Create a new course to start building your teaching catalog.</p>
           <Button
-            variant="primary"
+            variant="default"
             size="sm"
             onClick={() => onNavigate('/instructor/courses/create')}
             className="mt-4 text-xs"
@@ -205,7 +205,7 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <Button
-                    variant="primary"
+                    variant="default"
                     size="sm"
                     onClick={() => onNavigate(`/instructor/courses/${c.id}/edit`)}
                     className="text-xs gap-1"

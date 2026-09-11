@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, Sparkles, ArrowRight } from 'lucide-react';
+import { BookOpen, Sparkles, ArrowRight, Loader2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { Input } from '../../components/ui/Input';
@@ -138,7 +138,8 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigate }) => {
             required
           />
 
-          <Button type="submit" variant="primary" size="lg" isLoading={isSubmitting} className="w-full mt-2">
+          <Button type="submit" variant="default" size="lg" disabled={isSubmitting} className="w-full mt-2">
+            {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
             Create Student Account
           </Button>
         </form>
