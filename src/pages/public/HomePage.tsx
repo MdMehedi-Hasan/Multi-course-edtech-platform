@@ -107,7 +107,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                                 Build Your Future.
                             </h1>
 
-                            <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
+                            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
                                 Explore comprehensive courses taught by world-class educators,
                                 industry leaders, and academic experts across business, design,
                                 technology, languages, and more.
@@ -138,24 +138,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                                 <Button
                                     size="lg"
                                     onClick={() => onNavigate('/courses')}
-                                    className="gap-2 bg-linear-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-lg shadow-indigo-600/30 rounded-xl"
+                                    className="bg-linear-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 "
                                 >
-                                    <span>Explore Course Catalog</span>
+                                    Explore Course Catalog
                                     <ArrowRight className="w-4 h-4" />
                                 </Button>
                                 <Button
                                     size="lg"
                                     variant="outline"
                                     onClick={() => onNavigate('/register')}
-                                    className="border-white/15 text-slate-100 hover:bg-white/10 hover:text-white rounded-xl backdrop-blur-md"
+                                    className="border-white/15 bg-white/5 text-slate-100 hover:bg-white/10 hover:text-white rounded-xl backdrop-blur-md"
                                 >
                                     Join as Student
                                 </Button>
                             </div>
 
                             {/* Trust Indicators */}
-                            <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4">
-                                <div className="rounded-xl bg-white/4 border border-white/10 px-4 py-3 backdrop-blur-md">
+                            <div className="pt-3 border-t border-white/10 grid grid-cols-3 gap-4">
+                                <div className="">
                                     <p className="text-2xl font-extrabold text-transparent bg-linear-to-r from-white to-indigo-300 bg-clip-text">
                                         50K+
                                     </p>
@@ -163,7 +163,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                                         Global Learners
                                     </p>
                                 </div>
-                                <div className="rounded-xl bg-white/4 border border-white/10 px-4 py-3 backdrop-blur-md">
+                                <div className="">
                                     <p className="text-2xl font-extrabold text-transparent bg-linear-to-r from-white to-indigo-300 bg-clip-text">
                                         4.9/5
                                     </p>
@@ -171,7 +171,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                                         Average Rating
                                     </p>
                                 </div>
-                                <div className="rounded-xl bg-white/4 border border-white/10 px-4 py-3 backdrop-blur-md">
+                                <div className="">
                                     <p className="text-2xl font-extrabold text-transparent bg-linear-to-r from-white to-indigo-300 bg-clip-text">
                                         98%
                                     </p>
@@ -359,32 +359,32 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                                   </div>
                               ))
                             : categories.map((cat) => (
-                            <Card
-                                key={cat.id}
-                                hoverable
-                                className="p-6 cursor-pointer flex flex-col justify-between border-slate-200/80 hover:border-indigo-300 group relative overflow-hidden"
-                                onClick={() => onNavigate(`/courses?category=${cat.id}`)}
-                            >
-                                <div className="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-indigo-50 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="relative">
-                                    <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-indigo-50 to-violet-50 text-indigo-600 flex items-center justify-center font-bold mb-4 shadow-sm border border-indigo-100 group-hover:scale-110 group-hover:rotate-3 transition-transform">
-                                        <BookOpen className="w-6 h-6" />
-                                    </div>
-                                    <h3 className="font-bold text-slate-900 text-base mb-1.5 group-hover:text-indigo-600 transition-colors">
-                                        {cat.name}
-                                    </h3>
-                                    <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
-                                        {cat.description}
-                                    </p>
-                                </div>
-                                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-indigo-600 font-bold relative">
-                                    <span>{cat.courseCount} Courses</span>
-                                    <span className="w-7 h-7 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white group-hover:translate-x-0.5 transition-all">
-                                        <ArrowRight className="w-3.5 h-3.5" />
-                                    </span>
-                                </div>
-                            </Card>
-                        ))}
+                                  <Card
+                                      key={cat.id}
+                                      hoverable
+                                      className="p-6 cursor-pointer flex flex-col justify-between border-slate-200/80 hover:border-indigo-300 group relative overflow-hidden"
+                                      onClick={() => onNavigate(`/courses?category=${cat.id}`)}
+                                  >
+                                      <div className="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-indigo-50 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                                      <div className="relative">
+                                          <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-indigo-50 to-violet-50 text-indigo-600 flex items-center justify-center font-bold mb-4 shadow-sm border border-indigo-100 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                                              <BookOpen className="w-6 h-6" />
+                                          </div>
+                                          <h3 className="font-bold text-slate-900 text-base mb-1.5 group-hover:text-indigo-600 transition-colors">
+                                              {cat.name}
+                                          </h3>
+                                          <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                                              {cat.description}
+                                          </p>
+                                      </div>
+                                      <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-indigo-600 font-bold relative">
+                                          <span>{cat.courseCount} Courses</span>
+                                          <span className="w-7 h-7 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white group-hover:translate-x-0.5 transition-all">
+                                              <ArrowRight className="w-3.5 h-3.5" />
+                                          </span>
+                                      </div>
+                                  </Card>
+                              ))}
                     </div>
                 </div>
             </section>
@@ -423,12 +423,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                                   </div>
                               ))
                             : popularCourses.map((course) => (
-                            <CourseCard
-                                key={course.id}
-                                course={course}
-                                onSelect={(c) => onNavigate(`/courses/${c.slug || c.id}`)}
-                            />
-                        ))}
+                                  <CourseCard
+                                      key={course.id}
+                                      course={course}
+                                      onSelect={(c) => onNavigate(`/courses/${c.slug || c.id}`)}
+                                  />
+                              ))}
                     </div>
                 </div>
             </section>
@@ -483,55 +483,59 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                                   </div>
                               ))
                             : topInstructors.map((inst) => (
-                            <Card
-                                key={inst.id}
-                                hoverable
-                                className="p-6 text-center cursor-pointer flex flex-col items-center justify-between group overflow-hidden relative"
-                                onClick={() => onNavigate(`/instructors/${inst.id}`)}
-                            >
-                                <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full bg-linear-to-br from-indigo-100/80 to-violet-100/80 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="flex flex-col items-center relative">
-                                    <div className="relative mb-5">
-                                        <div className="absolute -inset-1.5 rounded-full bg-linear-to-r from-indigo-400 to-violet-400 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all blur-sm" />
-                                        <img
-                                            src={inst.avatarUrl}
-                                            alt={inst.name}
-                                            className="relative w-20 h-20 rounded-full object-cover border-2 border-white shadow-md group-hover:border-indigo-400 transition-colors"
-                                        />
-                                    </div>
-                                    <h3 className="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition-colors">
-                                        {inst.name}
-                                    </h3>
-                                    <p className="text-xs text-indigo-600 font-semibold mt-0.5">
-                                        {inst.headline}
-                                    </p>
-                                    <p className="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                                        {inst.bio}
-                                    </p>
-                                </div>
+                                  <Card
+                                      key={inst.id}
+                                      hoverable
+                                      className="p-6 text-center cursor-pointer flex flex-col items-center justify-between group overflow-hidden relative"
+                                      onClick={() => onNavigate(`/instructors/${inst.id}`)}
+                                  >
+                                      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full bg-linear-to-br from-indigo-100/80 to-violet-100/80 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                                      <div className="flex flex-col items-center relative">
+                                          <div className="relative mb-5">
+                                              <div className="absolute -inset-1.5 rounded-full bg-linear-to-r from-indigo-400 to-violet-400 opacity-30 group-hover:opacity-100 group-hover:scale-110 transition-all blur-sm" />
+                                              <img
+                                                  src={inst.avatarUrl}
+                                                  alt={inst.name}
+                                                  className="relative w-20 h-20 rounded-full object-cover border-2 border-white shadow-md group-hover:border-indigo-400 transition-colors"
+                                              />
+                                          </div>
+                                          <h3 className="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition-colors">
+                                              {inst.name}
+                                          </h3>
+                                          <p className="text-xs text-indigo-600 font-semibold mt-0.5">
+                                              {inst.headline}
+                                          </p>
+                                          <p className="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">
+                                              {inst.bio}
+                                          </p>
+                                      </div>
 
-                                <div className="mt-6 pt-4 border-t border-slate-100 w-full flex items-center justify-around text-xs text-slate-600 font-medium relative">
-                                    <div>
-                                        <span className="font-bold text-slate-900 block text-sm">
-                                            {inst.courseCount}
-                                        </span>
-                                        <span className="text-[10px] text-slate-400">Courses</span>
-                                    </div>
-                                    <div className="h-6 w-px bg-slate-200" />
-                                    <div>
-                                        <span className="font-bold text-slate-900 block text-sm">
-                                            {inst.studentCount.toLocaleString()}
-                                        </span>
-                                        <span className="text-[10px] text-slate-400">Students</span>
-                                    </div>
-                                    <div className="h-6 w-px bg-slate-200" />
-                                    <div className="flex items-center gap-1 text-amber-500 font-bold">
-                                        <Star className="w-3.5 h-3.5 fill-amber-400" />
-                                        <span>{inst.rating}</span>
-                                    </div>
-                                </div>
-                            </Card>
-                        ))}
+                                      <div className="mt-6 pt-4 border-t border-slate-100 w-full flex items-center justify-around text-xs text-slate-600 font-medium relative">
+                                          <div>
+                                              <span className="font-bold text-slate-900 block text-sm">
+                                                  {inst.courseCount}
+                                              </span>
+                                              <span className="text-[10px] text-slate-400">
+                                                  Courses
+                                              </span>
+                                          </div>
+                                          <div className="h-6 w-px bg-slate-200" />
+                                          <div>
+                                              <span className="font-bold text-slate-900 block text-sm">
+                                                  {inst.studentCount.toLocaleString()}
+                                              </span>
+                                              <span className="text-[10px] text-slate-400">
+                                                  Students
+                                              </span>
+                                          </div>
+                                          <div className="h-6 w-px bg-slate-200" />
+                                          <div className="flex items-center gap-1 text-amber-500 font-bold">
+                                              <Star className="w-3.5 h-3.5 fill-amber-400" />
+                                              <span>{inst.rating}</span>
+                                          </div>
+                                      </div>
+                                  </Card>
+                              ))}
                     </div>
                 </div>
             </section>
