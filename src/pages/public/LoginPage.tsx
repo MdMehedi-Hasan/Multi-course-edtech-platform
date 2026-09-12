@@ -18,6 +18,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
+  const [isDemoSubmitting, setIsDemoSubmitting] = useState(false);
 
   const routeByRole = (role: string) => {
     if (role === 'ADMIN') {
@@ -67,12 +68,16 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
   };
 
   const handleDemoRole = async (role: 'STUDENT' | 'INSTRUCTOR' | 'ADMIN') => {
+    if (isDemoSubmitting) return;
+    setIsDemoSubmitting(true);
     try {
       const user = await demoLogin(role);
       showToast('Demo Mode Active', `Signed in as ${role}`, 'success');
       routeByRole(user.role);
     } catch (err: any) {
       showToast('Error', 'Failed to activate demo login', 'error');
+    } finally {
+      setIsDemoSubmitting(false);
     }
   };
 
@@ -96,22 +101,28 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
           </p>
           <div className="grid grid-cols-3 gap-2">
             <button
+              type="button"
               onClick={() => handleDemoRole('STUDENT')}
-              className="px-2.5 py-1.5 bg-white hover:bg-emerald-50 text-emerald-700 font-bold text-xs rounded-xl border border-slate-200 shadow-xs flex flex-col items-center gap-1 transition-all"
+              disabled={isDemoSubmitting || isGoogleSubmitting || isSubmitting}
+              className="px-2.5 py-1.5 bg-white hover:bg-emerald-50 text-emerald-700 font-bold text-xs rounded-xl border border-slate-200 shadow-xs flex flex-col items-center gap-1 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <GraduationCap className="w-4 h-4 text-emerald-600" />
               <span>Student</span>
             </button>
             <button
+              type="button"
               onClick={() => handleDemoRole('INSTRUCTOR')}
-              className="px-2.5 py-1.5 bg-white hover:bg-amber-50 text-amber-700 font-bold text-xs rounded-xl border border-slate-200 shadow-xs flex flex-col items-center gap-1 transition-all"
+              disabled={isDemoSubmitting || isGoogleSubmitting || isSubmitting}
+              className="px-2.5 py-1.5 bg-white hover:bg-amber-50 text-amber-700 font-bold text-xs rounded-xl border border-slate-200 shadow-xs flex flex-col items-center gap-1 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <User className="w-4 h-4 text-amber-600" />
               <span>Instructor</span>
             </button>
             <button
+              type="button"
               onClick={() => handleDemoRole('ADMIN')}
-              className="px-2.5 py-1.5 bg-white hover:bg-purple-50 text-purple-700 font-bold text-xs rounded-xl border border-slate-200 shadow-xs flex flex-col items-center gap-1 transition-all"
+              disabled={isDemoSubmitting || isGoogleSubmitting || isSubmitting}
+              className="px-2.5 py-1.5 bg-white hover:bg-purple-50 text-purple-700 font-bold text-xs rounded-xl border border-slate-200 shadow-xs flex flex-col items-center gap-1 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <Shield className="w-4 h-4 text-purple-600" />
               <span>Admin</span>
@@ -123,7 +134,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
         <button
           type="button"
           onClick={handleGoogleLogin}
-          disabled={isGoogleSubmitting || isSubmitting}
+          disabled={isGoogleSubmitting || isSubmitting || isDemoSubmitting}
           className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm transition shadow-sm mb-4"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24">
@@ -182,7 +193,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
             </button>
           </div>
 
-          <Button type="submit" variant="default" size="lg" disabled={isSubmitting} className="w-full">
+          <Button type="submit" variant="default" size="lg" disabled={isSubmitting || isDemoSubmitting} className="w-full">
             {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
             Sign In
           </Button>
@@ -190,7 +201,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
 
         <div className="mt-6 text-center text-xs text-slate-500">
           Don't have an account yet?{' '}
-          <button onClick={() => onNavigate('/register')} className="font-bold text-indigo-600 hover:underline">
+          <button type="button" onClick={() => onNavigate('/register')} className="font-bold text-indigo-600 hover:underline">
             Create account
           </button>
         </div>
