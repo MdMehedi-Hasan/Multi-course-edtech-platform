@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useRef, useEffect } from 'react';
-import { BookOpen, LogOut, ArrowLeft, Plus, Sparkles, User, Settings } from 'lucide-react';
+import { LogOut, ArrowLeft, Plus, Sparkles, User, Settings } from 'lucide-react';
 import { InstructorSidebar } from './InstructorSidebar';
 import { useAuth } from '../../context/AuthContext';
 import { Button } from '../ui/Button';
@@ -35,14 +35,9 @@ export const InstructorLayout: React.FC<InstructorLayoutProps> = ({
       <header className="h-16 bg-slate-950 border-b border-slate-800/80 px-4 sm:px-6 flex items-center justify-between z-30 shrink-0">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-amber-500 rounded-xl text-slate-950 shadow-md shadow-amber-500/20 font-bold">
-              <BookOpen className="w-5 h-5" />
-            </div>
+            <img src="/logo.png" alt="EduNexus" className="h-7 brightness-0 invert" />
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-extrabold text-base text-white tracking-tight leading-none">
-                  EduNexus
-                </span>
                 <span className="text-[10px] font-extrabold uppercase tracking-widest text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800/80">
                   Instructor Studio
                 </span>

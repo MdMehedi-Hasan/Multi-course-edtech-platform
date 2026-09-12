@@ -14,6 +14,15 @@ import { CourseCard } from '@/components/course/CourseCard';
 import { Button } from '@/components/ui/Button';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { SEOHead } from '@/components/ui/SEOHead';
+import { PageHero } from '@/components/layouts/PageHero';
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+} from '@/components/ui/sheet';
 
 interface CoursesPageProps {
     onNavigate: (path: string) => void;
@@ -42,6 +51,7 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({
         'NEWEST' | 'PRICE_LOW' | 'PRICE_HIGH' | 'RATING' | 'POPULAR'
     >('NEWEST');
     const [currentPage, setCurrentPage] = useState(1);
+    const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
     useEffect(() => {
         async function loadCategories() {
@@ -133,6 +143,13 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({
         selectedPriceFilter !== 'ALL' ||
         minRating > 0;
 
+    const activeFilterCount =
+        (search ? 1 : 0) +
+        (selectedCategory ? 1 : 0) +
+        (selectedLevel ? 1 : 0) +
+        (selectedPriceFilter !== 'ALL' ? 1 : 0) +
+        (minRating > 0 ? 1 : 0);
+
     return (
         <div className="flex flex-col min-h-screen bg-slate-50">
             <SEOHead
@@ -140,44 +157,24 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({
                 description="Browse EduNexus' comprehensive course catalog. Filter by category, difficulty level, price, and ratings to find your next course."
             />
 
-            {/* Page Header Band */}
-            <section className="relative overflow-hidden bg-slate-950 border-b border-slate-800">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(99,102,241,0.25),transparent_55%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(139,92,246,0.14),transparent_55%)]" />
-                <div
-                    className="absolute inset-0 opacity-[0.12]"
-                    style={{
-                        backgroundImage:
-                            'linear-gradient(to right, rgba(148,163,184,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(148,163,184,0.15) 1px, transparent 1px)',
-                        backgroundSize: '56px 56px',
-                        maskImage: 'radial-gradient(ellipse_at_center, black 30%, transparent 75%)',
-                        WebkitMaskImage:
-                            'radial-gradient(ellipse_at_center, black 30%, transparent 75%)',
-                    }}
-                />
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/6 text-indigo-300 rounded-full border border-indigo-500/30 text-xs font-semibold w-fit backdrop-blur-md shadow-lg shadow-indigo-500/10">
-                        <SlidersHorizontal className="w-4 h-4 text-indigo-400" />
-                        Course Directory
-                    </span>
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mt-4 leading-[1.15]">
+            <PageHero
+                eyebrow="Course Directory"
+                eyebrowIcon={<SlidersHorizontal className="w-4 h-4 text-indigo-400" />}
+                title={
+                    <>
                         Explore{' '}
                         <span className="bg-linear-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
                             Online Courses
                         </span>
-                    </h1>
-                    <p className="text-sm sm:text-base text-slate-300 mt-3 max-w-2xl leading-relaxed">
-                        High-quality video courses and masterclasses taught by vetted industry
-                        experts and educators.
-                    </p>
-                    <div className="w-16 h-1 bg-linear-to-r from-indigo-500 to-violet-500 rounded-full mt-6" />
-                </div>
-            </section>
+                    </>
+                }
+                description="High-quality video courses and masterclasses taught by vetted industry experts and educators."
+            />
 
             <main className="flex-1 py-8 sm:py-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Filter Toolbar */}
-                    <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm mb-8 flex flex-col gap-4 hover:shadow-md hover:shadow-indigo-100/60 transition-shadow">
+                    {/* Desktop Filter Toolbar */}
+                    <div className="hidden lg:flex bg-white p-5 rounded-2xl border border-slate-200 shadow-sm mb-8 flex-col gap-4 hover:shadow-md hover:shadow-indigo-100/60 transition-shadow">
                         <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
                             {/* Search Input */}
                             <div className="relative w-full lg:w-96">
@@ -284,8 +281,8 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({
                         </div>
                     </div>
 
-                    {/* Results Counter */}
-                    <div className="mb-4 flex items-center justify-between text-xs text-slate-500 font-medium px-1">
+                    {/* Results Counter (Desktop) */}
+                    <div className="hidden lg:flex mb-4 items-center justify-between text-xs text-slate-500 font-medium px-1">
                         <span className="inline-flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
                             Showing{' '}
@@ -300,6 +297,171 @@ export const CoursesPage: React.FC<CoursesPageProps> = ({
                             </span>
                         )}
                     </div>
+
+                    {/* Mobile Filters Bar */}
+                    <div className="lg:hidden flex items-center justify-between gap-3 mb-4 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+                        <div className="text-xs text-slate-500 font-medium">
+                            <strong className="text-indigo-600">{filteredCourses.length}</strong>{' '}
+                            courses
+                            {totalPages > 1 && (
+                                <span className="ml-2 text-slate-400">
+                                    Page {currentPage}/{totalPages}
+                                </span>
+                            )}
+                        </div>
+                        <button
+                            onClick={() => setMobileFiltersOpen(true)}
+                            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-linear-to-r from-indigo-600 to-violet-600 text-white text-xs font-bold shadow-sm shadow-indigo-600/25 hover:from-indigo-700 hover:to-violet-700 transition-colors"
+                        >
+                            <SlidersHorizontal className="w-4 h-4" />
+                            Filters
+                            {hasActiveFilters && (
+                                <span className="px-1.5 py-0.5 bg-white/20 rounded-full text-[10px] font-extrabold">
+                                    {activeFilterCount}
+                                </span>
+                            )}
+                        </button>
+                    </div>
+
+                    {/* Mobile Filter Bottom Sheet */}
+                    <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
+                        <SheetContent
+                            side="bottom"
+                            className="rounded-t-3xl max-h-[88vh]"
+                        >
+                            <SheetHeader className="border-b border-slate-100 pb-3">
+                                <SheetTitle className="text-base font-extrabold flex items-center gap-2">
+                                    <SlidersHorizontal className="w-5 h-5 text-indigo-600" />
+                                    Filters &amp; Sorting
+                                </SheetTitle>
+                                <SheetDescription>
+                                    Refine the course catalog to find your perfect match.
+                                </SheetDescription>
+                            </SheetHeader>
+
+                            <div className="px-4 pb-4 overflow-y-auto space-y-5">
+                                <div>
+                                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                                        Search
+                                    </label>
+                                    <div className="relative">
+                                        <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                                        <input
+                                            type="text"
+                                            value={search}
+                                            onChange={(e) => setSearch(e.target.value)}
+                                            placeholder="Search course title or topic..."
+                                            className="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-400"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                                        Category
+                                    </label>
+                                    <select
+                                        value={selectedCategory}
+                                        onChange={(e) => setSelectedCategory(e.target.value)}
+                                        className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-400 text-slate-700 font-medium cursor-pointer"
+                                    >
+                                        <option value="">All Categories</option>
+                                        {categories.map((cat) => (
+                                            <option key={cat.id} value={cat.id}>
+                                                {cat.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                                        Difficulty Level
+                                    </label>
+                                    <select
+                                        value={selectedLevel}
+                                        onChange={(e) => setSelectedLevel(e.target.value)}
+                                        className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-400 text-slate-700 font-medium cursor-pointer"
+                                    >
+                                        <option value="">All Difficulty Levels</option>
+                                        <option value="BEGINNER">Beginner</option>
+                                        <option value="INTERMEDIATE">Intermediate</option>
+                                        <option value="ADVANCED">Advanced</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                                        Price
+                                    </label>
+                                    <div className="grid grid-cols-3 gap-0.5 rounded-xl bg-slate-100 border border-slate-200 p-1">
+                                        {(['ALL', 'FREE', 'PAID'] as const).map((mode) => (
+                                            <button
+                                                key={mode}
+                                                onClick={() => setSelectedPriceFilter(mode)}
+                                                className={`py-2 text-xs font-bold rounded-lg transition-all ${
+                                                    selectedPriceFilter === mode
+                                                        ? 'bg-linear-to-r from-indigo-600 to-violet-600 text-white shadow-sm shadow-indigo-600/25'
+                                                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/70'
+                                                }`}
+                                            >
+                                                {mode}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                                        Rating
+                                    </label>
+                                    <select
+                                        value={minRating}
+                                        onChange={(e) => setMinRating(Number(e.target.value))}
+                                        className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-400 text-slate-700 font-medium cursor-pointer"
+                                    >
+                                        <option value={0}>All Ratings</option>
+                                        <option value={4.5}>4.5★ &amp; above</option>
+                                        <option value={4.0}>4.0★ &amp; above</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                                        Sort By
+                                    </label>
+                                    <select
+                                        value={sortBy}
+                                        onChange={(e) => setSortBy(e.target.value as any)}
+                                        className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-400 text-slate-700 font-medium cursor-pointer"
+                                    >
+                                        <option value="NEWEST">Newest First</option>
+                                        <option value="POPULAR">Most Popular</option>
+                                        <option value="RATING">Highest Rated</option>
+                                        <option value="PRICE_LOW">Price (Low to High)</option>
+                                        <option value="PRICE_HIGH">Price (High to Low)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <SheetFooter className="border-t border-slate-100">
+                                <Button
+                                    variant="outline"
+                                    onClick={handleResetFilters}
+                                    className="gap-1.5 border-slate-300 text-slate-700 rounded-xl"
+                                >
+                                    <RotateCcw className="w-4 h-4" />
+                                    Reset Filters
+                                </Button>
+                                <Button
+                                    onClick={() => setMobileFiltersOpen(false)}
+                                    className="gap-1.5 bg-linear-to-r from-indigo-600 to-violet-600 rounded-xl shadow-sm shadow-indigo-600/25 hover:from-indigo-700 hover:to-violet-700"
+                                >
+                                    Apply &amp; See Results
+                                </Button>
+                            </SheetFooter>
+                        </SheetContent>
+                    </Sheet>
 
                     {/* Course Grid & Loading Skeletons */}
                     {isLoading ? (

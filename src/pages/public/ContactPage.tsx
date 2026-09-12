@@ -4,6 +4,7 @@ import { useToast } from '../../context/ToastContext';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { SEOHead } from '../../components/ui/SEOHead';
+import { PageHero } from '../../components/layouts/PageHero';
 
 export const ContactPage: React.FC = () => {
   const { showToast } = useToast();
@@ -32,14 +33,29 @@ export const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="py-12 bg-slate-50 min-h-screen">
+    <div className="flex flex-col min-h-screen bg-slate-50">
       <SEOHead
         title="Contact EduNexus Support & Sales"
         description="Get in touch with the EduNexus team for course inquiries, enterprise licensing, or technical support."
       />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <PageHero
+        eyebrow="Get In Touch"
+        eyebrowIcon={<Mail className="w-4 h-4 text-indigo-400" />}
+        title={
+          <>
+            We're Here to{' '}
+            <span className="bg-linear-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              Help You Succeed
+            </span>
+          </>
+        }
+        description="Have questions regarding team access, custom learning pathways, or technical support? Reach out anytime."
+      />
+
+      <main className="flex-1 py-10 sm:py-12">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Contact Details Card */}
           <div className="bg-slate-900 text-white rounded-3xl p-8 border border-slate-800 flex flex-col justify-between">
             <div>
@@ -122,7 +138,8 @@ export const ContactPage: React.FC = () => {
             </form>
           </div>
         </div>
-      </div>
+        </div>
+      </main>
     </div>
   );
 };

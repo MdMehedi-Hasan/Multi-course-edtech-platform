@@ -26,6 +26,7 @@ import { LessonPlayer } from '../../components/course/LessonPlayer';
 import { SEOHead } from '../../components/ui/SEOHead';
 import { CourseCard } from '../../components/course/CourseCard';
 import { Card } from '../../components/ui/Card';
+import { Skeleton } from '../../components/ui/Skeleton';
 
 interface CourseDetailPageProps {
   courseId: string;
@@ -105,11 +106,24 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ courseId, on
 
   if (isLoading || !course) {
     return (
-      <div className="py-20 text-center max-w-7xl mx-auto px-4">
-        <div className="bg-white p-12 rounded-3xl border border-slate-200 animate-pulse flex flex-col items-center">
-          <div className="w-16 h-16 bg-slate-200 rounded-2xl mb-4" />
-          <div className="h-6 bg-slate-200 w-1/2 rounded mb-2" />
-          <div className="h-4 bg-slate-200 w-1/3 rounded" />
+      <div className="py-10 bg-slate-50 min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <Skeleton className="h-56 sm:h-64 rounded-3xl" />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-6">
+              <div className="grid grid-cols-3 gap-3">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <Skeleton key={i} className="h-10 rounded-lg" />
+                ))}
+              </div>
+              <Skeleton className="h-36 rounded-2xl" />
+              <Skeleton className="h-36 rounded-2xl" />
+            </div>
+            <div className="space-y-6">
+              <Skeleton className="h-52 rounded-2xl" />
+              <Skeleton className="h-40 rounded-2xl" />
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -176,7 +190,19 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({ courseId, on
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Course Header Banner */}
-        <div className="bg-slate-900 text-white rounded-3xl p-8 mb-8 border border-slate-800 shadow-xl relative overflow-hidden">
+        <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-10 mb-8 border border-slate-800 shadow-xl relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(99,102,241,0.3),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(139,92,246,0.18),transparent_60%)]" />
+          <div
+            className="absolute inset-0 opacity-[0.08]"
+            style={{
+              backgroundImage:
+                'linear-gradient(to right, rgba(148,163,184,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(148,163,184,0.2) 1px, transparent 1px)',
+              backgroundSize: '48px 48px',
+              maskImage: 'radial-gradient(ellipse_at_center, black 10%, transparent 80%)',
+              WebkitMaskImage: 'radial-gradient(ellipse_at_center, black 10%, transparent 80%)',
+            }}
+          />
           <div className="max-w-3xl relative z-10">
             <div className="flex flex-wrap items-center gap-2 mb-4">
               <Badge variant="indigo">{course.categoryName || 'General Education'}</Badge>

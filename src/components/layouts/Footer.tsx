@@ -1,5 +1,4 @@
 import React from 'react';
-import { BookOpen } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (path: string) => void;
@@ -13,10 +12,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Brand Info */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
-              <div className="p-1.5 bg-indigo-600 rounded-lg text-white">
-                <BookOpen className="w-4 h-4" />
-              </div>
-              <span className="font-bold text-base text-white tracking-tight">EduNexus</span>
+              <img
+                src="/logo.png"
+                alt="EduNexus"
+                className="h-7 brightness-0 invert"
+              />
             </div>
             <p className="text-slate-400 leading-relaxed max-w-xs">
               Enterprise-grade online learning management ecosystem built for students, instructors, and educational institutions.

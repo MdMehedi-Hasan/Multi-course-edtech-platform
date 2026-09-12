@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { BookOpen, User, LogOut, LayoutDashboard, Settings, Menu, ArrowRight } from 'lucide-react';
+import { User, LogOut, LayoutDashboard, Settings, Menu, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Button } from '../ui/Button';
 import {
@@ -98,17 +98,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPath }) => {
             onClick={() => onNavigate('/')}
             className="flex items-center gap-2.5 group focus:outline-none"
           >
-            <div className="p-2 bg-indigo-600 rounded-xl text-white shadow-md shadow-indigo-600/20 group-hover:scale-105 transition-transform">
-              <BookOpen className="w-5 h-5" />
-            </div>
-            <div className="flex flex-col text-left">
-              <span className="font-extrabold text-base text-slate-900 tracking-tight leading-none">
-                EduNexus
-              </span>
-              <span className="text-[10px] font-semibold text-indigo-600 tracking-widest uppercase mt-0.5">
-                Global Learning
-              </span>
-            </div>
+            <img
+              src="/dark-logo.png"
+              alt="EduNexus"
+              className="h-8 group-hover:scale-105 transition-transform"
+            />
           </button>
 
           {/* Public Navigation Links (Desktop) */}
@@ -257,12 +251,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentPath }) => {
                 <SheetHeader className="px-5 py-4 border-b border-slate-100">
                   <SheetTitle>
                     <span className="flex items-center gap-2.5">
-                      <span className="p-1.5 bg-indigo-600 rounded-lg text-white">
-                        <BookOpen className="w-4 h-4" />
-                      </span>
-                      <span className="font-extrabold text-base text-slate-900 tracking-tight">
-                        EduNexus
-                      </span>
+                      <img src="/dark-logo.png" alt="EduNexus" className="h-6" />
                     </span>
                   </SheetTitle>
                   <SheetDescription className="text-xs">

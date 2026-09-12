@@ -13,7 +13,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   description = 'EduNexus is the premier enterprise learning platform for software developers, cloud architects, and tech leaders.',
   canonicalUrl,
   ogType = 'website',
-  ogImage = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200',
+  ogImage = '/logo.png',
 }) => {
   useEffect(() => {
     const fullTitle = `${title} | EduNexus Enterprise EdTech`;

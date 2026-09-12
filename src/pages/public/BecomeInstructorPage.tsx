@@ -18,6 +18,8 @@ import { useToast } from '../../context/ToastContext';
 import { api } from '../../lib/api';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
+import { SEOHead } from '../../components/ui/SEOHead';
+import { PageHero } from '../../components/layouts/PageHero';
 
 interface BecomeInstructorPageProps {
   onNavigate: (path: string) => void;
@@ -95,26 +97,33 @@ export const BecomeInstructorPage: React.FC<BecomeInstructorPageProps> = ({ onNa
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto space-y-10">
-        {/* Header Hero */}
-        <div className="text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
-            Instructor Onboarding Portal
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Teach and Inspire Learners Worldwide
-          </h1>
-          <p className="max-w-2xl mx-auto text-slate-600 text-base">
-            Join EduNexus as an approved course instructor. Publish professional courses, mentor global students, and share your domain expertise.
-          </p>
-        </div>
+    <div className="flex flex-col min-h-screen bg-slate-50">
+      <SEOHead
+        title="Become an EduNexus Instructor"
+        description="Join EduNexus as an approved course instructor. Publish professional courses, mentor global students, and share your domain expertise."
+      />
 
+      <PageHero
+        eyebrow="Instructor Onboarding Portal"
+        eyebrowIcon={<Sparkles className="w-4 h-4 text-indigo-400" />}
+        title={
+          <>
+            Teach and{' '}
+            <span className="bg-linear-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              Inspire Learners
+            </span>{' '}
+            Worldwide
+          </>
+        }
+        description="Join EduNexus as an approved course instructor. Publish professional courses, mentor global students, and share your domain expertise."
+      />
+
+      <main className="flex-1 py-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Benefits Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
-            <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-linear-to-br from-indigo-500 to-violet-600 text-white flex items-center justify-center shadow-md shadow-indigo-500/25">
               <Users className="w-5 h-5" />
             </div>
             <h3 className="font-bold text-slate-900 text-base">Global Student Reach</h3>
@@ -124,7 +133,7 @@ export const BecomeInstructorPage: React.FC<BecomeInstructorPageProps> = ({ onNa
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-linear-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center shadow-md shadow-emerald-500/25">
               <DollarSign className="w-5 h-5" />
             </div>
             <h3 className="font-bold text-slate-900 text-base">Earn Revenue</h3>
@@ -134,7 +143,7 @@ export const BecomeInstructorPage: React.FC<BecomeInstructorPageProps> = ({ onNa
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
-            <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-linear-to-br from-amber-500 to-orange-600 text-white flex items-center justify-center shadow-md shadow-amber-500/25">
               <Award className="w-5 h-5" />
             </div>
             <h3 className="font-bold text-slate-900 text-base">State-of-the-Art Studio</h3>
@@ -359,7 +368,8 @@ export const BecomeInstructorPage: React.FC<BecomeInstructorPageProps> = ({ onNa
             </form>
           </div>
         )}
-      </div>
+        </div>
+      </main>
     </div>
   );
 };

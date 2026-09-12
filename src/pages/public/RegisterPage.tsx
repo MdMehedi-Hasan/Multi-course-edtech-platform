@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { BookOpen, Sparkles, ArrowRight, Loader2 } from 'lucide-react';
+import { Sparkles, ArrowRight, Loader2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
+import { SEOHead } from '../../components/ui/SEOHead';
 
 interface RegisterPageProps {
   onNavigate: (path: string) => void;
@@ -67,11 +68,13 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 py-12">
-      <div className="w-full max-w-md bg-white rounded-3xl border border-slate-200 shadow-xl p-8">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 py-12 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.08),transparent_55%),radial-gradient(ellipse_at_bottom_right,rgba(139,92,246,0.08),transparent_55%)] pointer-events-none" />
+      <SEOHead title="Create Account" description="Join EduNexus and start learning computer science, cloud, and engineering courses today." />
+      <div className="w-full max-w-md relative bg-white rounded-3xl border border-slate-200 shadow-xl p-8">
         <div className="text-center mb-6">
-          <div className="inline-flex p-3 bg-indigo-600 rounded-2xl text-white shadow-md shadow-indigo-600/20 mb-3">
-            <BookOpen className="w-6 h-6" />
+          <div className="inline-flex mb-3">
+            <img src="/dark-logo.png" alt="EduNexus" className="h-9" />
           </div>
           <h1 className="text-2xl font-extrabold text-slate-900">Create Student Account</h1>
           <p className="text-xs text-slate-500 mt-1">Start learning computer science, cloud, and engineering.</p>

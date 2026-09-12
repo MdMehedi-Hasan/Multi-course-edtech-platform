@@ -35,14 +35,9 @@ export const StudentLayout: React.FC<StudentLayoutProps> = ({
       <header className="h-16 bg-slate-950 border-b border-slate-800/80 px-4 sm:px-6 flex items-center justify-between z-30 shrink-0">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-indigo-600 rounded-xl text-white shadow-md shadow-indigo-600/20 font-bold">
-              <BookOpen className="w-5 h-5" />
-            </div>
+            <img src="/logo.png" alt="EduNexus" className="h-7 brightness-0 invert" />
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-extrabold text-base text-white tracking-tight leading-none">
-                  EduNexus
-                </span>
                 <span className="text-[10px] font-extrabold uppercase tracking-widest text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800/80">
                   Student Portal
                 </span>
