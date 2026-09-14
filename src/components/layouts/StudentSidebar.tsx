@@ -11,13 +11,18 @@ import {
   LogOut,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { cn } from 'cn';
 
 interface SidebarProps {
   currentPath: string;
   onNavigate: (path: string) => void;
 }
 
-export const StudentSidebar: React.FC<SidebarProps> = ({ currentPath, onNavigate }) => {
+export const StudentSidebar: React.FC<SidebarProps & { className?: string }> = ({
+  currentPath,
+  onNavigate,
+  className,
+}) => {
   const { logout } = useAuth();
 
   const links = [
@@ -32,14 +37,19 @@ export const StudentSidebar: React.FC<SidebarProps> = ({ currentPath, onNavigate
   ];
 
   return (
-    <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 min-h-[calc(100vh-4rem)] border-r border-slate-800">
+    <aside
+      className={cn(
+        'w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 h-full min-h-0 border-r border-slate-800',
+        className
+      )}
+    >
       <div className="p-4 border-b border-slate-800">
         <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded-md border border-emerald-800">
           Student Portal
         </span>
       </div>
 
-      <nav className="flex-1 p-3 space-y-1">
+      <nav className="flex-1 p-3 space-y-1 overflow-y-auto min-h-0">
         {links.map((link) => {
           const Icon = link.icon;
           const isActive = currentPath === link.path;

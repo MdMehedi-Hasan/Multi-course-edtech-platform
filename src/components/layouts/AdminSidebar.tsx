@@ -40,14 +40,14 @@ export const AdminSidebar: React.FC<SidebarProps> = ({ currentPath, onNavigate }
   ];
 
   return (
-    <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 min-h-[calc(100vh-4rem)] border-r border-slate-800">
+    <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 h-full min-h-0 border-r border-slate-800">
       <div className="p-4 border-b border-slate-800 flex items-center justify-between">
         <span className="text-[10px] font-bold uppercase tracking-widest text-purple-400 bg-purple-950/80 px-2.5 py-1 rounded-md border border-purple-800">
           Admin Governance
         </span>
       </div>
 
-      <nav className="flex-1 p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-10rem)] scrollbar-thin">
+      <nav className="flex-1 p-3 space-y-1 overflow-y-auto min-h-0 scrollbar-thin">
         {links.map((link) => {
           const Icon = link.icon;
           const isActive = currentPath === link.path;

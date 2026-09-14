@@ -30,7 +30,7 @@ export const InstructorLayout: React.FC<InstructorLayoutProps> = ({
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans">
+    <div className="h-screen bg-slate-900 text-slate-100 flex flex-col font-sans overflow-hidden">
       {/* Top Instructor Studio App Header */}
       <header className="h-16 bg-slate-950 border-b border-slate-800/80 px-4 sm:px-6 flex items-center justify-between z-30 shrink-0">
         <div className="flex items-center gap-4">
@@ -102,7 +102,7 @@ export const InstructorLayout: React.FC<InstructorLayoutProps> = ({
                     setUserDropdownOpen(false);
                     onNavigate('/instructor/profile');
                   }}
-                  className="w-full text-left px-4 py-2 text-xs text-slate-300 hover:bg-slate-850 hover:text-amber-400 flex items-center gap-2.5 font-medium transition-colors"
+                  className="w-full text-left px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-amber-400 flex items-center gap-2.5 font-medium transition-colors"
                 >
                   <User className="w-4 h-4 text-slate-400" />
                   <span>Author Profile</span>
@@ -113,7 +113,7 @@ export const InstructorLayout: React.FC<InstructorLayoutProps> = ({
                     setUserDropdownOpen(false);
                     onNavigate('/instructor/settings');
                   }}
-                  className="w-full text-left px-4 py-2 text-xs text-slate-300 hover:bg-slate-850 hover:text-amber-400 flex items-center gap-2.5 font-medium transition-colors"
+                  className="w-full text-left px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-amber-400 flex items-center gap-2.5 font-medium transition-colors"
                 >
                   <Settings className="w-4 h-4 text-slate-400" />
                   <span>Settings</span>
@@ -124,7 +124,7 @@ export const InstructorLayout: React.FC<InstructorLayoutProps> = ({
                     setUserDropdownOpen(false);
                     onNavigate('/');
                   }}
-                  className="w-full text-left px-4 py-2 text-xs text-slate-300 hover:bg-slate-850 hover:text-amber-400 flex items-center gap-2.5 font-medium transition-colors"
+                  className="w-full text-left px-4 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-amber-400 flex items-center gap-2.5 font-medium transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4 text-slate-400" />
                   <span>Back to Website</span>
@@ -150,9 +150,9 @@ export const InstructorLayout: React.FC<InstructorLayoutProps> = ({
       </header>
 
       {/* Workspace with dedicated Instructor Sidebar */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 min-h-0 flex overflow-hidden">
         <InstructorSidebar currentPath={currentPath} onNavigate={onNavigate} />
-        <main className="flex-1 bg-slate-900 overflow-y-auto p-6 md:p-8">
+        <main className="flex-1 min-h-0 bg-slate-900 overflow-y-auto p-6 md:p-8">
           <div className="max-w-7xl mx-auto">{children}</div>
         </main>
       </div>

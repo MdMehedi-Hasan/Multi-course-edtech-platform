@@ -177,7 +177,7 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
 
   if (isLoading && !data) {
     return (
-      <div className="flex items-center justify-center min-h-[500px]">
+      <div className="flex items-center justify-center min-h-125">
         <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
       </div>
     );
