@@ -11,13 +11,18 @@ import {
   LogOut,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { cn } from 'cn';
 
 interface SidebarProps {
   currentPath: string;
   onNavigate: (path: string) => void;
 }
 
-export const InstructorSidebar: React.FC<SidebarProps> = ({ currentPath, onNavigate }) => {
+export const InstructorSidebar: React.FC<SidebarProps & { className?: string }> = ({
+  currentPath,
+  onNavigate,
+  className,
+}) => {
   const { logout } = useAuth();
 
   const links = [
@@ -32,7 +37,12 @@ export const InstructorSidebar: React.FC<SidebarProps> = ({ currentPath, onNavig
   ];
 
   return (
-    <aside className="w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 h-full min-h-0 border-r border-slate-800">
+    <aside
+      className={cn(
+        'w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 h-full min-h-0 border-r border-slate-800',
+        className
+      )}
+    >
       <div className="p-4 border-b border-slate-800">
         <span className="text-[10px] font-bold uppercase tracking-widest text-amber-400 bg-amber-950/80 px-2.5 py-1 rounded-md border border-amber-800">
           Instructor Studio
