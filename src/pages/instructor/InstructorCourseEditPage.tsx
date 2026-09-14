@@ -281,17 +281,17 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-500/40"></div>
       </div>
     );
   }
 
   if (!course) {
     return (
-      <Card className="p-12 text-center text-rose-600 border-rose-200">
+      <Card className="p-12 text-center text-rose-400 border-rose-500/20">
         <ShieldAlert className="w-12 h-12 mx-auto mb-2" />
         <h3 className="font-bold text-base">Course Not Found or Access Denied</h3>
-        <p className="text-xs text-slate-500 mt-1">
+        <p className="text-xs text-slate-400 mt-1">
           You do not have permission to edit this course or it has been removed.
         </p>
         <Button variant="outline" size="sm" onClick={() => onNavigate('/instructor/courses')} className="mt-4">
@@ -304,21 +304,21 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
   return (
     <div className="space-y-8">
       {/* Top Navigation & Status Action Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-700/50">
         <div>
           <button
             onClick={() => onNavigate('/instructor/courses')}
-            className="text-xs text-indigo-600 hover:text-indigo-800 flex items-center gap-1 font-bold mb-2"
+            className="text-xs text-indigo-400 hover:text-indigo-400 flex items-center gap-1 font-bold mb-2"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Back to Course Directory
           </button>
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-black text-slate-900 line-clamp-1">{course.title}</h1>
+            <h1 className="text-2xl font-black text-slate-100 line-clamp-1">{course.title}</h1>
             <span
               className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md ${
                 course.isPublished
-                  ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                  : 'bg-amber-100 text-amber-800 border border-amber-300'
+                  ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                  : 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
               }`}
             >
               {course.isPublished ? 'Published' : 'Draft'}
@@ -354,12 +354,12 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
 
       {/* Validation Banner if Errors Exist */}
       {validationErrors.length > 0 && (
-        <div className="p-4 bg-amber-50 border border-amber-200 rounded-2xl space-y-2">
-          <div className="flex items-center gap-2 text-amber-900 font-extrabold text-xs">
-            <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+        <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl space-y-2">
+          <div className="flex items-center gap-2 text-amber-400 font-extrabold text-xs">
+            <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
             <span>Publishing Checklist ({validationErrors.length} requirement missing)</span>
           </div>
-          <ul className="list-disc list-inside text-xs text-amber-800 space-y-1 pl-1">
+          <ul className="list-disc list-inside text-xs text-amber-400 space-y-1 pl-1">
             {validationErrors.map((err, idx) => (
               <li key={idx}>{err}</li>
             ))}
@@ -369,27 +369,27 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
 
       {/* Success / Error Banners */}
       {successMsg && (
-        <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
+        <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />
           <span>{successMsg}</span>
         </div>
       )}
 
       {errorMsg && (
-        <div className="p-3 bg-rose-50 border border-rose-200 text-rose-800 rounded-xl text-xs flex items-center gap-2">
-          <ShieldAlert className="w-4 h-4 shrink-0 text-rose-600" />
+        <div className="p-3 bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-xl text-xs flex items-center gap-2">
+          <ShieldAlert className="w-4 h-4 shrink-0 text-rose-400" />
           <span>{errorMsg}</span>
         </div>
       )}
 
       {/* Mode Tabs */}
-      <div className="flex border-b border-slate-200 gap-6 text-xs font-bold">
+      <div className="flex border-b border-slate-700/50 gap-6 text-xs font-bold">
         <button
           onClick={() => setActiveTab('CURRICULUM')}
           className={`pb-3 border-b-2 transition-colors flex items-center gap-2 ${
             activeTab === 'CURRICULUM'
-              ? 'border-indigo-600 text-indigo-600'
-              : 'border-transparent text-slate-500 hover:text-slate-800'
+              ? 'border-indigo-500/40 text-indigo-400'
+              : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
           <Layers className="w-4 h-4" />
@@ -400,8 +400,8 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
           onClick={() => setActiveTab('DETAILS')}
           className={`pb-3 border-b-2 transition-colors flex items-center gap-2 ${
             activeTab === 'DETAILS'
-              ? 'border-indigo-600 text-indigo-600'
-              : 'border-transparent text-slate-500 hover:text-slate-800'
+              ? 'border-indigo-500/40 text-indigo-400'
+              : 'border-transparent text-slate-400 hover:text-slate-200'
           }`}
         >
           <FileText className="w-4 h-4" />
@@ -413,7 +413,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
       {activeTab === 'CURRICULUM' && (
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-extrabold text-slate-900">Sections & Lessons Builder</h2>
+            <h2 className="text-base font-extrabold text-slate-100">Sections & Lessons Builder</h2>
             <Button
               variant="outline"
               size="sm"
@@ -427,8 +427,8 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
 
           {/* Add Section Inline Form */}
           {isAddingSection && (
-            <Card className="p-4 border-indigo-200 bg-indigo-50/40 space-y-3">
-              <h3 className="text-xs font-bold text-indigo-950">Add New Section</h3>
+            <Card className="p-4 border-indigo-500/30 bg-indigo-500/10 space-y-3">
+              <h3 className="text-xs font-bold text-indigo-400">Add New Section</h3>
               <form onSubmit={handleAddSection} className="flex gap-2">
                 <input
                   type="text"
@@ -436,7 +436,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                   placeholder="e.g., Section 2: Core Principles & Methodology"
                   value={newSectionTitle}
                   onChange={(e) => setNewSectionTitle(e.target.value)}
-                  className="flex-1 bg-white text-slate-900 p-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500"
+                  className="flex-1 bg-slate-900/60 text-slate-100 p-2 text-xs rounded-xl border border-slate-700/50 focus:outline-none focus:border-indigo-500/40"
                 />
                 <Button type="submit" variant="default" size="sm" className="text-xs">
                   Save Section
@@ -456,20 +456,20 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
 
           {/* Sections List */}
           {course.sections?.length === 0 ? (
-            <Card className="p-8 text-center text-xs text-slate-500 border-slate-200">
+            <Card className="p-8 text-center text-xs text-slate-400 border-slate-700/50">
               No sections created yet. Click "Add New Section" to start building your course modules.
             </Card>
           ) : (
             <div className="space-y-6">
               {course.sections.map((section: any, sIdx: number) => (
-                <Card key={section.id} className="p-5 border-slate-200 space-y-4 bg-white">
+                <Card key={section.id} className="p-5 border-slate-700/50 space-y-4 bg-slate-900/60">
                   {/* Section Header */}
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div className="flex items-center justify-between border-b border-slate-700/50 pb-3">
                     <div className="flex items-center gap-3">
-                      <span className="text-xs font-black text-slate-400 bg-slate-100 px-2 py-1 rounded">
+                      <span className="text-xs font-black text-slate-400 bg-slate-700/60 px-2 py-1 rounded">
                         #{sIdx + 1}
                       </span>
-                      <h3 className="font-extrabold text-slate-900 text-sm">{section.title}</h3>
+                      <h3 className="font-extrabold text-slate-100 text-sm">{section.title}</h3>
                       <span className="text-[10px] text-slate-400 font-bold">
                         ({section.lessons?.length || 0} lessons)
                       </span>
@@ -479,7 +479,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                       <button
                         onClick={() => handleMoveSection(sIdx, 'UP')}
                         disabled={sIdx === 0}
-                        className="p-1 text-slate-400 hover:text-slate-800 disabled:opacity-30"
+                        className="p-1 text-slate-400 hover:text-slate-200 disabled:opacity-30"
                         title="Move Section Up"
                       >
                         <MoveUp className="w-3.5 h-3.5" />
@@ -487,14 +487,14 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                       <button
                         onClick={() => handleMoveSection(sIdx, 'DOWN')}
                         disabled={sIdx === course.sections.length - 1}
-                        className="p-1 text-slate-400 hover:text-slate-800 disabled:opacity-30"
+                        className="p-1 text-slate-400 hover:text-slate-200 disabled:opacity-30"
                         title="Move Section Down"
                       >
                         <MoveDown className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => handleDeleteSection(section.id, section.title)}
-                        className="p-1 text-slate-400 hover:text-rose-600 transition-colors ml-2"
+                        className="p-1 text-slate-400 hover:text-rose-400 transition-colors ml-2"
                         title="Delete Section"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -507,30 +507,30 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                     {section.lessons?.map((lesson: any, lIdx: number) => (
                       <div
                         key={lesson.id}
-                        className="p-3 bg-slate-50 hover:bg-slate-100/80 rounded-xl border border-slate-200 transition-colors flex items-center justify-between text-xs gap-3"
+                        className="p-3 bg-slate-800/60 hover:bg-slate-800 rounded-xl border border-slate-700/50 transition-colors flex items-center justify-between text-xs gap-3"
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <Video className="w-4 h-4 text-indigo-600 shrink-0" />
+                          <Video className="w-4 h-4 text-indigo-400 shrink-0" />
                           <div className="min-w-0">
-                            <p className="font-bold text-slate-900 truncate">
+                            <p className="font-bold text-slate-100 truncate">
                               {lIdx + 1}. {lesson.title}
                             </p>
-                            <div className="flex items-center gap-2 text-[10px] text-slate-500 mt-0.5">
+                            <div className="flex items-center gap-2 text-[10px] text-slate-400 mt-0.5">
                               <span className="flex items-center gap-1">
                                 <Clock className="w-3 h-3" /> {lesson.durationMinutes} mins
                               </span>
                               {lesson.isFreePreview && (
-                                <span className="bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.2 rounded">
+                                <span className="bg-emerald-500/15 text-emerald-400 font-bold px-1.5 py-0.2 rounded">
                                   Free Preview
                                 </span>
                               )}
                               {lesson.downloadableUrl && (
-                                <span className="flex items-center gap-0.5 text-indigo-600">
+                                <span className="flex items-center gap-0.5 text-indigo-400">
                                   <Download className="w-3 h-3" /> Attachment
                                 </span>
                               )}
                               {lesson.externalUrl && (
-                                <span className="flex items-center gap-0.5 text-cyan-600">
+                                <span className="flex items-center gap-0.5 text-cyan-400">
                                   <ExternalLink className="w-3 h-3" /> Link
                                 </span>
                               )}
@@ -542,14 +542,14 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                           <button
                             onClick={() => handleMoveLesson(section.id, lIdx, 'UP')}
                             disabled={lIdx === 0}
-                            className="p-1 text-slate-400 hover:text-slate-800 disabled:opacity-30"
+                            className="p-1 text-slate-400 hover:text-slate-200 disabled:opacity-30"
                           >
                             <MoveUp className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => handleMoveLesson(section.id, lIdx, 'DOWN')}
                             disabled={lIdx === section.lessons.length - 1}
-                            className="p-1 text-slate-400 hover:text-slate-800 disabled:opacity-30"
+                            className="p-1 text-slate-400 hover:text-slate-200 disabled:opacity-30"
                           >
                             <MoveDown className="w-3.5 h-3.5" />
                           </button>
@@ -565,7 +565,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
 
                           <button
                             onClick={() => handleDeleteLesson(lesson.id, lesson.title)}
-                            className="p-1 text-slate-400 hover:text-rose-600"
+                            className="p-1 text-slate-400 hover:text-rose-400"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
@@ -577,7 +577,7 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                       variant="ghost"
                       size="sm"
                       onClick={() => setActiveSectionIdForLesson(section.id)}
-                      className="text-xs text-indigo-600 hover:bg-indigo-50 mt-2 gap-1"
+                      className="text-xs text-indigo-400 hover:bg-indigo-500/10 mt-2 gap-1"
                     >
                       <Plus className="w-3.5 h-3.5" /> Add Lesson to Section
                     </Button>
@@ -591,10 +591,10 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
 
       {/* TAB 2: DETAILS FORM */}
       {activeTab === 'DETAILS' && (
-        <Card className="p-6 border-slate-200 space-y-6">
+        <Card className="p-6 border-slate-700/50 space-y-6">
           <form onSubmit={handleSaveDetails} className="space-y-5">
             <div>
-              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
                 Course Title
               </label>
               <input
@@ -602,12 +602,12 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full bg-slate-50 text-slate-900 p-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500 font-bold"
+                className="w-full bg-slate-900/60 text-slate-100 p-2.5 text-xs rounded-xl border border-slate-700/50 focus:outline-none focus:border-indigo-500/40 font-bold"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
                 Short Description (Subtitle)
               </label>
               <input
@@ -615,34 +615,34 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                 required
                 value={shortDescription}
                 onChange={(e) => setShortDescription(e.target.value)}
-                className="w-full bg-slate-50 text-slate-900 p-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-900/60 text-slate-100 p-2.5 text-xs rounded-xl border border-slate-700/50 focus:outline-none focus:border-indigo-500/40"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
                 Detailed Course Overview
               </label>
               <textarea
                 rows={5}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full bg-slate-50 text-slate-900 p-3 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-900/60 text-slate-100 p-3 text-xs rounded-xl border border-slate-700/50 focus:outline-none focus:border-indigo-500/40"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
                   Category
                 </label>
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500 font-bold"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 text-xs rounded-xl border border-slate-700/50 focus:outline-none focus:border-indigo-500/40 font-bold"
                 >
                   {categories.map((c) => (
-                    <option key={c.id} value={c.id}>
+                    <option className="bg-slate-900 text-slate-100" key={c.id} value={c.id}>
                       {c.name}
                     </option>
                   ))}
@@ -650,22 +650,22 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
                   Difficulty Level
                 </label>
                 <select
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 text-xs rounded-xl border border-slate-700/50 focus:outline-none focus:border-indigo-500/40"
                 >
-                  <option value="BEGINNER">Beginner</option>
-                  <option value="INTERMEDIATE">Intermediate</option>
-                  <option value="ADVANCED">Advanced</option>
+                  <option className="bg-slate-900 text-slate-100" value="BEGINNER">Beginner</option>
+                  <option className="bg-slate-900 text-slate-100" value="INTERMEDIATE">Intermediate</option>
+                  <option className="bg-slate-900 text-slate-100" value="ADVANCED">Advanced</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
                   Price ($ USD)
                 </label>
                 <input
@@ -674,30 +674,30 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                   min="0"
                   value={price}
                   onChange={(e) => setPrice(parseFloat(e.target.value) || 0)}
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500 font-bold"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 text-xs rounded-xl border border-slate-700/50 focus:outline-none focus:border-indigo-500/40 font-bold"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">
+              <label className="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
                 Thumbnail Image URL
               </label>
               <input
                 type="url"
                 value={thumbnailUrl}
                 onChange={(e) => setThumbnailUrl(e.target.value)}
-                className="w-full bg-slate-50 text-slate-900 p-2.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-900/60 text-slate-100 p-2.5 text-xs rounded-xl border border-slate-700/50 focus:outline-none focus:border-indigo-500/40"
               />
             </div>
 
             {thumbnailUrl && (
-              <div className="w-48 aspect-video rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
+              <div className="w-48 aspect-video rounded-xl overflow-hidden border border-slate-700/50 bg-slate-700/60">
                 <img src={thumbnailUrl} alt="Thumbnail" className="w-full h-full object-cover" />
               </div>
             )}
 
-            <div className="pt-4 border-t border-slate-100 flex justify-end">
+            <div className="pt-4 border-t border-slate-700/50 flex justify-end">
               <Button type="submit" variant="default" disabled={isSaving} className="text-xs gap-2">
                 <Save className="w-4 h-4" />
                 <span>{isSaving ? 'Saving Changes...' : 'Save Course Settings'}</span>
@@ -710,24 +710,24 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
       {/* CREATE LESSON MODAL */}
       {activeSectionIdForLesson && (
         <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <Card className="max-w-xl w-full p-6 border-slate-200 space-y-4 max-h-[90vh] overflow-y-auto">
-            <h3 className="text-base font-extrabold text-slate-900">Add New Lesson</h3>
+          <Card className="max-w-xl w-full p-6 border-slate-700/50 space-y-4 max-h-[90vh] overflow-y-auto">
+            <h3 className="text-base font-extrabold text-slate-100">Add New Lesson</h3>
 
             <form onSubmit={handleCreateLesson} className="space-y-4 text-xs">
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Lesson Title *</label>
+                <label className="block font-bold text-slate-300 mb-1">Lesson Title *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g., 2. Understanding Core Principles"
                   value={lessonForm.title}
                   onChange={(e) => setLessonForm({ ...lessonForm, title: e.target.value })}
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 rounded-xl border border-slate-200"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 rounded-xl border border-slate-700/50"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Duration (Minutes)</label>
+                <label className="block font-bold text-slate-300 mb-1">Duration (Minutes)</label>
                 <input
                   type="number"
                   min="1"
@@ -735,52 +735,52 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                   onChange={(e) =>
                     setLessonForm({ ...lessonForm, durationMinutes: parseInt(e.target.value) || 10 })
                   }
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 rounded-xl border border-slate-200"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 rounded-xl border border-slate-700/50"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Video Stream URL</label>
+                <label className="block font-bold text-slate-300 mb-1">Video Stream URL</label>
                 <input
                   type="url"
                   placeholder="https://..."
                   value={lessonForm.videoUrl}
                   onChange={(e) => setLessonForm({ ...lessonForm, videoUrl: e.target.value })}
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 rounded-xl border border-slate-200"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 rounded-xl border border-slate-700/50"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Lesson Text / Article Content</label>
+                <label className="block font-bold text-slate-300 mb-1">Lesson Text / Article Content</label>
                 <textarea
                   rows={3}
                   placeholder="In-depth textual guide or notes for this lesson..."
                   value={lessonForm.content}
                   onChange={(e) => setLessonForm({ ...lessonForm, content: e.target.value })}
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 rounded-xl border border-slate-200"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 rounded-xl border border-slate-700/50"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Downloadable Resource URL</label>
+                  <label className="block font-bold text-slate-300 mb-1">Downloadable Resource URL</label>
                   <input
                     type="url"
                     placeholder="https://.../resources.pdf"
                     value={lessonForm.downloadableUrl}
                     onChange={(e) => setLessonForm({ ...lessonForm, downloadableUrl: e.target.value })}
-                    className="w-full bg-slate-50 text-slate-900 p-2 rounded-xl border border-slate-200"
+                    className="w-full bg-slate-900/60 text-slate-100 p-2 rounded-xl border border-slate-700/50"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">External Resource Link</label>
+                  <label className="block font-bold text-slate-300 mb-1">External Resource Link</label>
                   <input
                     type="url"
                     placeholder="https://resources.example.com"
                     value={lessonForm.externalUrl}
                     onChange={(e) => setLessonForm({ ...lessonForm, externalUrl: e.target.value })}
-                    className="w-full bg-slate-50 text-slate-900 p-2 rounded-xl border border-slate-200"
+                    className="w-full bg-slate-900/60 text-slate-100 p-2 rounded-xl border border-slate-700/50"
                   />
                 </div>
               </div>
@@ -791,14 +791,14 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                   id="preview-check"
                   checked={lessonForm.isFreePreview}
                   onChange={(e) => setLessonForm({ ...lessonForm, isFreePreview: e.target.checked })}
-                  className="rounded text-indigo-600"
+                  className="rounded text-indigo-400"
                 />
-                <label htmlFor="preview-check" className="font-bold text-slate-700">
+                <label htmlFor="preview-check" className="font-bold text-slate-300">
                   Allow Free Preview (Available before enrollment)
                 </label>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2">
+              <div className="pt-4 border-t border-slate-700/50 flex items-center justify-end gap-2">
                 <Button
                   type="button"
                   variant="outline"
@@ -819,23 +819,23 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
       {/* EDIT LESSON MODAL */}
       {editingLesson && (
         <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
-          <Card className="max-w-xl w-full p-6 border-slate-200 space-y-4 max-h-[90vh] overflow-y-auto">
-            <h3 className="text-base font-extrabold text-slate-900">Edit Lesson Details</h3>
+          <Card className="max-w-xl w-full p-6 border-slate-700/50 space-y-4 max-h-[90vh] overflow-y-auto">
+            <h3 className="text-base font-extrabold text-slate-100">Edit Lesson Details</h3>
 
             <form onSubmit={handleUpdateLesson} className="space-y-4 text-xs">
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Lesson Title</label>
+                <label className="block font-bold text-slate-300 mb-1">Lesson Title</label>
                 <input
                   type="text"
                   required
                   value={editingLesson.title || ''}
                   onChange={(e) => setEditingLesson({ ...editingLesson, title: e.target.value })}
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 rounded-xl border border-slate-200 font-bold"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 rounded-xl border border-slate-700/50 font-bold"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Duration (Minutes)</label>
+                <label className="block font-bold text-slate-300 mb-1">Duration (Minutes)</label>
                 <input
                   type="number"
                   min="1"
@@ -846,50 +846,50 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                       durationMinutes: parseInt(e.target.value) || 10,
                     })
                   }
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 rounded-xl border border-slate-200"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 rounded-xl border border-slate-700/50"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Video Stream URL</label>
+                <label className="block font-bold text-slate-300 mb-1">Video Stream URL</label>
                 <input
                   type="url"
                   value={editingLesson.videoUrl || ''}
                   onChange={(e) => setEditingLesson({ ...editingLesson, videoUrl: e.target.value })}
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 rounded-xl border border-slate-200"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 rounded-xl border border-slate-700/50"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Lesson Text / Article Content</label>
+                <label className="block font-bold text-slate-300 mb-1">Lesson Text / Article Content</label>
                 <textarea
                   rows={3}
                   value={editingLesson.content || ''}
                   onChange={(e) => setEditingLesson({ ...editingLesson, content: e.target.value })}
-                  className="w-full bg-slate-50 text-slate-900 p-2.5 rounded-xl border border-slate-200"
+                  className="w-full bg-slate-900/60 text-slate-100 p-2.5 rounded-xl border border-slate-700/50"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Downloadable Resource URL</label>
+                  <label className="block font-bold text-slate-300 mb-1">Downloadable Resource URL</label>
                   <input
                     type="url"
                     value={editingLesson.downloadableUrl || ''}
                     onChange={(e) =>
                       setEditingLesson({ ...editingLesson, downloadableUrl: e.target.value })
                     }
-                    className="w-full bg-slate-50 text-slate-900 p-2 rounded-xl border border-slate-200"
+                    className="w-full bg-slate-900/60 text-slate-100 p-2 rounded-xl border border-slate-700/50"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">External Documentation Link</label>
+                  <label className="block font-bold text-slate-300 mb-1">External Documentation Link</label>
                   <input
                     type="url"
                     value={editingLesson.externalUrl || ''}
                     onChange={(e) => setEditingLesson({ ...editingLesson, externalUrl: e.target.value })}
-                    className="w-full bg-slate-50 text-slate-900 p-2 rounded-xl border border-slate-200"
+                    className="w-full bg-slate-900/60 text-slate-100 p-2 rounded-xl border border-slate-700/50"
                   />
                 </div>
               </div>
@@ -902,14 +902,14 @@ export const InstructorCourseEditPage: React.FC<InstructorCourseEditPageProps> =
                   onChange={(e) =>
                     setEditingLesson({ ...editingLesson, isFreePreview: e.target.checked })
                   }
-                  className="rounded text-indigo-600"
+                  className="rounded text-indigo-400"
                 />
-                <label htmlFor="edit-preview-check" className="font-bold text-slate-700">
+                <label htmlFor="edit-preview-check" className="font-bold text-slate-300">
                   Allow Free Preview
                 </label>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-2">
+              <div className="pt-4 border-t border-slate-700/50 flex items-center justify-end gap-2">
                 <Button type="button" variant="outline" size="sm" onClick={() => setEditingLesson(null)}>
                   Cancel
                 </Button>

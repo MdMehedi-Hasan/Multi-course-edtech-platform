@@ -45,39 +45,39 @@ export const AdminNotificationsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">System Broadcast Announcements</h1>
-        <p className="text-xs text-slate-500 mt-1">Dispatch platform updates, policy changes, or system maintenance alerts to all users or target roles.</p>
+        <h1 className="text-2xl font-extrabold text-slate-100 tracking-tight">System Broadcast Announcements</h1>
+        <p className="text-xs text-slate-400 mt-1">Dispatch platform updates, policy changes, or system maintenance alerts to all users or target roles.</p>
       </div>
 
       {resultMessage && (
         <div
           className={`p-4 rounded-xl flex items-center gap-2 text-xs font-semibold ${
-            resultMessage.type === 'success' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'
+            resultMessage.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
           }`}
         >
-          {resultMessage.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <AlertCircle className="w-4 h-4 text-rose-600" />}
+          {resultMessage.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <AlertCircle className="w-4 h-4 text-rose-400" />}
           <span>{resultMessage.text}</span>
         </div>
       )}
 
       <Card className="p-6 max-w-2xl">
         <div className="flex items-center gap-3 border-b pb-4 mb-5">
-          <div className="p-3 bg-purple-100 text-purple-700 rounded-2xl">
+          <div className="p-3 bg-purple-500/10 text-purple-400 rounded-2xl">
             <Megaphone className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-extrabold text-slate-900 text-base">New Platform Broadcast</h3>
-            <p className="text-xs text-slate-500">Sent instantly to in-app notification centers for online users.</p>
+            <h3 className="font-extrabold text-slate-100 text-base">New Platform Broadcast</h3>
+            <p className="text-xs text-slate-400">Sent instantly to in-app notification centers for online users.</p>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           <div>
-            <label className="block font-bold text-slate-700 mb-1">Target Audience</label>
+            <label className="block font-bold text-slate-300 mb-1">Target Audience</label>
             <select
               value={formData.targetRole}
               onChange={(e) => setFormData({ ...formData, targetRole: e.target.value })}
-              className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-purple-600 font-medium"
+              className="w-full p-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600 font-medium"
             >
               <option value="ALL">All Platform Users (Students + Faculty + Admins)</option>
               <option value="STUDENT">Students Only</option>
@@ -86,37 +86,37 @@ export const AdminNotificationsPage: React.FC = () => {
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 mb-1">Notification Title *</label>
+            <label className="block font-bold text-slate-300 mb-1">Notification Title *</label>
             <input
               type="text"
               required
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="E.g., Platform Terms Update / Scheduled Maintenance"
-              className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-purple-600 font-medium"
+              className="w-full p-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600 font-medium"
             />
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 mb-1">Message Body *</label>
+            <label className="block font-bold text-slate-300 mb-1">Message Body *</label>
             <textarea
               rows={4}
               required
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               placeholder="Provide clear details regarding the announcement..."
-              className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full p-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600"
             />
           </div>
 
           <div>
-            <label className="block font-bold text-slate-700 mb-1">Optional Action Link URL</label>
+            <label className="block font-bold text-slate-300 mb-1">Optional Action Link URL</label>
             <input
               type="text"
               value={formData.linkUrl}
               onChange={(e) => setFormData({ ...formData, linkUrl: e.target.value })}
               placeholder="E.g., /courses or /student/settings"
-              className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-purple-600 font-mono text-[11px]"
+              className="w-full p-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600 font-mono text-[11px]"
             />
           </div>
 

@@ -68,7 +68,21 @@ import { AdminAuditLogsPage } from './pages/admin/AdminAuditLogsPage';
 import { AdminSettingsPage } from './pages/admin/AdminSettingsPage';
 
 export function AppContent() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname || '/');
+  const [currentPath, setCurrentPath] = useState(() => {
+    const path = window.location.pathname || '/';
+    const isDark = path.startsWith('/student') || path.startsWith('/instructor') || path.startsWith('/admin');
+    document.documentElement.classList.toggle('dark', isDark);
+    return path;
+  });
+
+  useEffect(() => {
+    const isDark = currentPath.startsWith('/student') || currentPath.startsWith('/instructor') || currentPath.startsWith('/admin');
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [currentPath]);
 
   useEffect(() => {
     const handlePopState = () => {

@@ -72,7 +72,7 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-500/40"></div>
       </div>
     );
   }
@@ -80,10 +80,10 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-700/50">
         <div>
-          <h1 className="text-2xl font-black text-slate-900">Course Management Studio</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-2xl font-black text-slate-100">Course Management Studio</h1>
+          <p className="text-xs text-slate-400 mt-1">
             Create, draft, structure curriculum sections, and manage publishing states for your courses.
           </p>
         </div>
@@ -100,7 +100,7 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
       </div>
 
       {errorMsg && (
-        <div className="p-4 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl text-xs flex items-center gap-2">
+        <div className="p-4 bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-xl text-xs flex items-center gap-2">
           <ShieldAlert className="w-4.5 h-4.5 shrink-0" />
           <span>{errorMsg}</span>
         </div>
@@ -109,11 +109,11 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
       {/* Filter and Search Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         {/* Status Tabs */}
-        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+        <div className="flex items-center gap-1 bg-slate-700/60 p-1 rounded-xl">
           <button
             onClick={() => setFilter('ALL')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filter === 'ALL' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'
+              filter === 'ALL' ? 'bg-slate-900/60 text-slate-100 shadow-xs' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             All Courses ({courses.length})
@@ -121,7 +121,7 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
           <button
             onClick={() => setFilter('PUBLISHED')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filter === 'PUBLISHED' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'
+              filter === 'PUBLISHED' ? 'bg-slate-900/60 text-slate-100 shadow-xs' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             Published ({courses.filter((c) => c.isPublished).length})
@@ -129,7 +129,7 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
           <button
             onClick={() => setFilter('DRAFT')}
             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              filter === 'DRAFT' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'
+              filter === 'DRAFT' ? 'bg-slate-900/60 text-slate-100 shadow-xs' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
             Drafts ({courses.filter((c) => !c.isPublished).length})
@@ -144,17 +144,17 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
             placeholder="Search courses..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white text-slate-900 pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500"
+            className="w-full bg-slate-900/60 text-slate-100 pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-700/50 focus:outline-none focus:border-indigo-500/40"
           />
         </div>
       </div>
 
       {/* Course Cards Grid */}
       {filteredCourses.length === 0 ? (
-        <Card className="p-12 text-center border-slate-200">
+        <Card className="p-12 text-center border-slate-700/50">
           <BookOpen className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-          <h3 className="text-sm font-bold text-slate-800">No courses match your filter</h3>
-          <p className="text-xs text-slate-500 mt-1">Create a new course to start building your teaching catalog.</p>
+          <h3 className="text-sm font-bold text-slate-200">No courses match your filter</h3>
+          <p className="text-xs text-slate-400 mt-1">Create a new course to start building your teaching catalog.</p>
           <Button
             variant="default"
             size="sm"
@@ -167,9 +167,9 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCourses.map((c) => (
-            <Card key={c.id} className="p-6 flex flex-col justify-between border-slate-200 hover:border-slate-300 transition-colors">
+            <Card key={c.id} className="p-6 flex flex-col justify-between border-slate-700/50 hover:border-slate-600 transition-colors">
               <div className="space-y-3">
-                <div className="aspect-video bg-slate-100 rounded-xl overflow-hidden border border-slate-200 relative">
+                <div className="aspect-video bg-slate-700/60 rounded-xl overflow-hidden border border-slate-700/50 relative">
                   {c.thumbnailUrl ? (
                     <img src={c.thumbnailUrl} alt={c.title} className="w-full h-full object-cover" />
                   ) : (
@@ -181,7 +181,7 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
                     className={`absolute top-2 right-2 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md shadow-xs ${
                       c.isPublished
                         ? 'bg-emerald-600 text-white'
-                        : 'bg-amber-500 text-white'
+                        : 'bg-amber-500 text-slate-950'
                     }`}
                   >
                     {c.isPublished ? 'Published' : 'Draft'}
@@ -189,20 +189,20 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
                 </div>
 
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">
                     {c.categoryName || 'General'}
                   </span>
-                  <h3 className="font-bold text-slate-900 text-sm mt-1.5 line-clamp-2">{c.title}</h3>
-                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">{c.shortDescription}</p>
+                  <h3 className="font-bold text-slate-100 text-sm mt-1.5 line-clamp-2">{c.title}</h3>
+                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{c.shortDescription}</p>
                 </div>
 
-                <div className="flex items-center justify-between text-xs font-semibold text-slate-600 pt-2 border-t border-slate-100">
+                <div className="flex items-center justify-between text-xs font-semibold text-slate-400 pt-2 border-t border-slate-700/50">
                   <span>{c.sectionCount || 0} Sections · {c.lessonCount || 0} Lessons</span>
-                  <span className="font-extrabold text-slate-900">${c.price}</span>
+                  <span className="font-extrabold text-slate-100">${c.price}</span>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div className="mt-6 pt-4 border-t border-slate-700/50 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <Button
                     variant="default"
@@ -226,7 +226,7 @@ export const InstructorCoursesPage: React.FC<InstructorCoursesPageProps> = ({ on
 
                 <button
                   onClick={() => handleDeleteCourse(c.id, c.title)}
-                  className="p-2 text-slate-400 hover:text-rose-600 transition-colors"
+                  className="p-2 text-slate-400 hover:text-rose-400 transition-colors"
                   title="Delete course"
                 >
                   <Trash2 className="w-4 h-4" />

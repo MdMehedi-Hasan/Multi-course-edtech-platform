@@ -60,17 +60,17 @@ export const AdminSettingsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">System Settings & Platform Parameters</h1>
-        <p className="text-xs text-slate-500 mt-1">Configure global registration policies, faculty onboarding requirements, and emergency maintenance controls.</p>
+        <h1 className="text-2xl font-extrabold text-slate-100 tracking-tight">System Settings & Platform Parameters</h1>
+        <p className="text-xs text-slate-400 mt-1">Configure global registration policies, faculty onboarding requirements, and emergency maintenance controls.</p>
       </div>
 
       {feedback && (
         <div
           className={`p-4 rounded-xl flex items-center gap-2 text-xs font-semibold ${
-            feedback.type === 'success' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'
+            feedback.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
           }`}
         >
-          {feedback.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <AlertCircle className="w-4 h-4 text-rose-600" />}
+          {feedback.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <AlertCircle className="w-4 h-4 text-rose-400" />}
           <span>{feedback.message}</span>
         </div>
       )}
@@ -78,95 +78,95 @@ export const AdminSettingsPage: React.FC = () => {
       <Card className="p-6 max-w-2xl">
         <form onSubmit={handleSave} className="space-y-6 text-xs">
           <div className="space-y-4 border-b pb-6">
-            <h3 className="font-extrabold text-slate-900 text-sm flex items-center gap-2">
-              <Globe className="w-4 h-4 text-purple-600" /> General Identification
+            <h3 className="font-extrabold text-slate-100 text-sm flex items-center gap-2">
+              <Globe className="w-4 h-4 text-purple-400" /> General Identification
             </h3>
 
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Platform Brand Name</label>
+              <label className="block font-bold text-slate-300 mb-1">Platform Brand Name</label>
               <input
                 type="text"
                 required
                 value={settings.siteName}
                 onChange={(e) => setSettings({ ...settings, siteName: e.target.value })}
-                className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-purple-600 font-bold"
+                className="w-full p-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600 font-bold"
               />
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 mb-1">Official Support Email</label>
+              <label className="block font-bold text-slate-300 mb-1">Official Support Email</label>
               <input
                 type="email"
                 required
                 value={settings.supportEmail}
                 onChange={(e) => setSettings({ ...settings, supportEmail: e.target.value })}
-                className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-purple-600 font-medium"
+                className="w-full p-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600 font-medium"
               />
             </div>
           </div>
 
           {/* Onboarding & Publishing Governance */}
           <div className="space-y-4 border-b pb-6">
-            <h3 className="font-extrabold text-slate-900 text-sm flex items-center gap-2">
-              <Shield className="w-4 h-4 text-purple-600" /> Security & Onboarding Rules
+            <h3 className="font-extrabold text-slate-100 text-sm flex items-center gap-2">
+              <Shield className="w-4 h-4 text-purple-400" /> Security & Onboarding Rules
             </h3>
 
-            <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <div className="flex items-center justify-between p-3.5 bg-slate-800/60 rounded-xl border border-slate-700/50">
               <div>
-                <p className="font-bold text-slate-900">Require Manual Approval for New Faculty</p>
-                <p className="text-[11px] text-slate-500">New instructors cannot publish courses until vetted by an admin.</p>
+                <p className="font-bold text-slate-100">Require Manual Approval for New Faculty</p>
+                <p className="text-[11px] text-slate-400">New instructors cannot publish courses until vetted by an admin.</p>
               </div>
               <input
                 type="checkbox"
                 checked={settings.requireInstructorApproval}
                 onChange={(e) => setSettings({ ...settings, requireInstructorApproval: e.target.checked })}
-                className="w-4 h-4 text-purple-600 rounded border-slate-300 focus:ring-purple-500"
+                className="w-4 h-4 text-purple-400 rounded border-slate-600 focus:ring-purple-500"
               />
             </div>
 
-            <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <div className="flex items-center justify-between p-3.5 bg-slate-800/60 rounded-xl border border-slate-700/50">
               <div>
-                <p className="font-bold text-slate-900">Allow Public Account Registrations</p>
-                <p className="text-[11px] text-slate-500">Enable new student signups via auth portal.</p>
+                <p className="font-bold text-slate-100">Allow Public Account Registrations</p>
+                <p className="text-[11px] text-slate-400">Enable new student signups via auth portal.</p>
               </div>
               <input
                 type="checkbox"
                 checked={settings.enablePublicRegistration}
                 onChange={(e) => setSettings({ ...settings, enablePublicRegistration: e.target.checked })}
-                className="w-4 h-4 text-purple-600 rounded border-slate-300 focus:ring-purple-500"
+                className="w-4 h-4 text-purple-400 rounded border-slate-600 focus:ring-purple-500"
               />
             </div>
 
-            <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <div className="flex items-center justify-between p-3.5 bg-slate-800/60 rounded-xl border border-slate-700/50">
               <div>
-                <p className="font-bold text-slate-900">Allow Instructor Self-Publishing</p>
-                <p className="text-[11px] text-slate-500">Instructors can publish directly without individual course admin review.</p>
+                <p className="font-bold text-slate-100">Allow Instructor Self-Publishing</p>
+                <p className="text-[11px] text-slate-400">Instructors can publish directly without individual course admin review.</p>
               </div>
               <input
                 type="checkbox"
                 checked={settings.allowCourseSelfPublishing}
                 onChange={(e) => setSettings({ ...settings, allowCourseSelfPublishing: e.target.checked })}
-                className="w-4 h-4 text-purple-600 rounded border-slate-300 focus:ring-purple-500"
+                className="w-4 h-4 text-purple-400 rounded border-slate-600 focus:ring-purple-500"
               />
             </div>
           </div>
 
           {/* Emergency Controls */}
           <div className="space-y-4">
-            <h3 className="font-extrabold text-slate-900 text-sm flex items-center gap-2 text-rose-600">
+            <h3 className="font-extrabold text-slate-100 text-sm flex items-center gap-2 text-rose-400">
               <Lock className="w-4 h-4" /> System Maintenance Override
             </h3>
 
-            <div className="flex items-center justify-between p-3.5 bg-rose-50 border border-rose-200 rounded-xl">
+            <div className="flex items-center justify-between p-3.5 bg-rose-500/10 border border-rose-500/20 rounded-xl">
               <div>
-                <p className="font-bold text-rose-900">Activate Platform Maintenance Mode</p>
-                <p className="text-[11px] text-rose-700">Restrict non-admin users from accessing courses or purchasing enrollments.</p>
+                <p className="font-bold text-rose-400">Activate Platform Maintenance Mode</p>
+                <p className="text-[11px] text-rose-400">Restrict non-admin users from accessing courses or purchasing enrollments.</p>
               </div>
               <input
                 type="checkbox"
                 checked={settings.maintenanceMode}
                 onChange={(e) => setSettings({ ...settings, maintenanceMode: e.target.checked })}
-                className="w-4 h-4 text-rose-600 rounded border-rose-300 focus:ring-rose-500"
+                className="w-4 h-4 text-rose-400 rounded border-rose-500/30 focus:ring-rose-500"
               />
             </div>
           </div>

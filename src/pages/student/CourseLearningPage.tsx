@@ -21,6 +21,7 @@ import {
 import { api } from '../../lib/api';
 import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
+import { Skeleton } from '../../components/ui/Skeleton';
 
 interface CourseLearningPageProps {
   courseId: string;
@@ -177,8 +178,18 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
 
   if (isLoading && !data) {
     return (
-      <div className="flex items-center justify-center min-h-125">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
+      <div className="flex flex-col lg:flex-row max-h-[calc(100vh-4rem)] overflow-hidden animate-pulse">
+        <div className="w-full lg:w-80 bg-slate-900 border-b lg:border-b-0 lg:border-r border-slate-800 shrink-0 p-4 space-y-3">
+          <Skeleton className="h-5 w-40 bg-slate-800" />
+          {[1,2,3,4].map(i => (
+            <Skeleton key={i} className="h-10 w-full bg-slate-800" />
+          ))}
+        </div>
+        <div className="flex-1 flex flex-col bg-slate-950 p-6 space-y-6">
+          <Skeleton className="aspect-video w-full max-h-[500px] bg-slate-800" />
+          <Skeleton className="h-10 w-72 bg-slate-800" />
+          <Skeleton className="h-24 w-full bg-slate-800" />
+        </div>
       </div>
     );
   }
@@ -186,12 +197,12 @@ export const CourseLearningPage: React.FC<CourseLearningPageProps> = ({
   if (accessDeniedMsg) {
     return (
       <div className="max-w-xl mx-auto py-16 px-4">
-        <Card className="p-8 border-rose-200 bg-rose-50/60 text-center space-y-4 shadow-xl">
-          <div className="w-14 h-14 bg-rose-100 text-rose-600 rounded-3xl flex items-center justify-center mx-auto">
+        <Card className="p-8 bg-red-500/5 border-red-500/20 text-center space-y-4 shadow-xl">
+          <div className="w-14 h-14 bg-red-500/10 text-red-400 rounded-3xl flex items-center justify-center mx-auto">
             <ShieldAlert className="w-8 h-8" />
           </div>
-          <h2 className="text-xl font-extrabold text-slate-900">Enrollment Required</h2>
-          <p className="text-xs text-slate-600 leading-relaxed">{accessDeniedMsg}</p>
+          <h2 className="text-xl font-extrabold text-slate-100">Enrollment Required</h2>
+          <p className="text-xs text-slate-400 leading-relaxed">{accessDeniedMsg}</p>
           <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
             <Button variant="outline" onClick={() => onNavigate('/student/courses')}>
               Back to My Courses

@@ -38,8 +38,8 @@ export const AdminAuditLogsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Security Audit Trail & System Logs</h1>
-        <p className="text-xs text-slate-500 mt-1">Immutable administrative action history tracking logins, privilege escalation, status suspensions, and settings changes.</p>
+        <h1 className="text-2xl font-extrabold text-slate-100 tracking-tight">Security Audit Trail & System Logs</h1>
+        <p className="text-xs text-slate-400 mt-1">Immutable administrative action history tracking logins, privilege escalation, status suspensions, and settings changes.</p>
       </div>
 
       <Card className="p-4">
@@ -51,14 +51,14 @@ export const AdminAuditLogsPage: React.FC = () => {
               placeholder="Search actor email, target or action keyword..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full pl-9 pr-4 py-2 bg-slate-900/60 border border-slate-700/50 rounded-xl text-xs text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600"
             />
           </div>
 
           <select
             value={actionFilter}
             onChange={(e) => setActionFilter(e.target.value)}
-            className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none"
+            className="px-3 py-2 bg-slate-900/60 border border-slate-700/50 rounded-xl text-xs font-bold text-slate-100 outline-none"
           >
             <option value="">All Action Types</option>
             <option value="USER_LOGIN">USER_LOGIN</option>
@@ -76,7 +76,7 @@ export const AdminAuditLogsPage: React.FC = () => {
 
       <Card className="overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-600">
+          <table className="w-full text-left text-xs text-slate-400">
             <thead className="bg-slate-900 text-slate-300 font-bold uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="px-5 py-3.5">Action Badge</th>
@@ -86,7 +86,7 @@ export const AdminAuditLogsPage: React.FC = () => {
                 <th className="px-5 py-3.5 text-right">Metadata</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-700/50">
               {isLoading ? (
                 <tr>
                   <td colSpan={5} className="text-center py-12 text-slate-400">Loading security log ledger...</td>
@@ -97,18 +97,18 @@ export const AdminAuditLogsPage: React.FC = () => {
                 </tr>
               ) : (
                 logs.map((log) => (
-                  <tr key={log.id} className="hover:bg-slate-50/80 transition-colors font-mono text-[11px]">
+                  <tr key={log.id} className="hover:bg-slate-700/40 transition-colors font-mono text-[11px]">
                     <td className="px-5 py-4 font-sans">
-                      <span className="font-mono text-[10px] font-extrabold bg-purple-950 text-purple-300 border border-purple-800 px-2.5 py-1 rounded-md">
+                      <span className="font-mono text-[10px] font-extrabold bg-purple-950 text-purple-300 border border-purple-500/40 px-2.5 py-1 rounded-md">
                         {log.action}
                       </span>
                     </td>
 
-                    <td className="px-4 py-4 font-bold text-slate-900">
+                    <td className="px-4 py-4 font-bold text-slate-100">
                       {log.actorEmail}
                     </td>
 
-                    <td className="px-4 py-4 text-purple-700 font-medium">
+                    <td className="px-4 py-4 text-purple-400 font-medium">
                       {log.target}
                     </td>
 
@@ -119,7 +119,7 @@ export const AdminAuditLogsPage: React.FC = () => {
                     <td className="px-5 py-4 text-right font-sans">
                       {log.metadata ? (
                         <Button variant="ghost" size="sm" onClick={() => setSelectedMeta(log)}>
-                          <Code className="w-3.5 h-3.5 text-purple-600 mr-1" /> View JSON
+                          <Code className="w-3.5 h-3.5 text-purple-400 mr-1" /> View JSON
                         </Button>
                       ) : (
                         <span className="text-slate-400 text-[10px]">None</span>
@@ -139,7 +139,7 @@ export const AdminAuditLogsPage: React.FC = () => {
           <Card className="w-full max-w-lg p-6 shadow-2xl space-y-4">
             <div className="flex justify-between items-center border-b pb-3">
               <div>
-                <h3 className="font-extrabold text-slate-900 text-sm">Audit Payload Metadata</h3>
+                <h3 className="font-extrabold text-slate-100 text-sm">Audit Payload Metadata</h3>
                 <p className="text-[11px] text-slate-400 font-mono">{selectedMeta.action} → {selectedMeta.target}</p>
               </div>
               <Button variant="ghost" size="sm" onClick={() => setSelectedMeta(null)}>Close</Button>

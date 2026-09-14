@@ -47,7 +47,7 @@ export const InstructorAnalyticsPage: React.FC<InstructorAnalyticsPageProps> = (
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-500/40"></div>
       </div>
     );
   }
@@ -64,68 +64,68 @@ export const InstructorAnalyticsPage: React.FC<InstructorAnalyticsPageProps> = (
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="pb-6 border-b border-slate-200">
-        <h1 className="text-2xl font-black text-slate-900">Analytics & Insights</h1>
-        <p className="text-xs text-slate-500 mt-1">
+      <div className="pb-6 border-b border-slate-700/50">
+        <h1 className="text-2xl font-black text-slate-100">Analytics & Insights</h1>
+        <p className="text-xs text-slate-400 mt-1">
           Track course metrics, monthly enrollment growth, completion velocity, and rating performance.
         </p>
       </div>
 
       {/* Metric Overview Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <Card className="p-5 border-slate-200">
+        <Card className="p-5 border-slate-700/50">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-indigo-50 text-indigo-600 rounded-2xl">
+            <div className="p-3 bg-indigo-500/10 text-indigo-400 rounded-2xl">
               <TrendingUp className="w-5 h-5" />
             </div>
             <div>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Enrollments</p>
-              <h3 className="text-2xl font-black text-slate-900">{totalEnrollments}</h3>
+              <h3 className="text-2xl font-black text-slate-100">{totalEnrollments}</h3>
             </div>
           </div>
         </Card>
 
-        <Card className="p-5 border-slate-200">
+        <Card className="p-5 border-slate-700/50">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-cyan-50 text-cyan-600 rounded-2xl">
+            <div className="p-3 bg-cyan-500/10 text-cyan-400 rounded-2xl">
               <Users className="w-5 h-5" />
             </div>
             <div>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Active Students</p>
-              <h3 className="text-2xl font-black text-slate-900">{activeStudents}</h3>
+              <h3 className="text-2xl font-black text-slate-100">{activeStudents}</h3>
             </div>
           </div>
         </Card>
 
-        <Card className="p-5 border-slate-200">
+        <Card className="p-5 border-slate-700/50">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
+            <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-2xl">
               <Award className="w-5 h-5" />
             </div>
             <div>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Avg Completion Rate</p>
-              <h3 className="text-2xl font-black text-slate-900">{avgCompletionRate}%</h3>
+              <h3 className="text-2xl font-black text-slate-100">{avgCompletionRate}%</h3>
             </div>
           </div>
         </Card>
 
-        <Card className="p-5 border-slate-200">
+        <Card className="p-5 border-slate-700/50">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-amber-50 text-amber-500 rounded-2xl">
+            <div className="p-3 bg-amber-500/10 text-amber-500 rounded-2xl">
               <Star className="w-5 h-5 fill-amber-400" />
             </div>
             <div>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Avg Course Rating</p>
-              <h3 className="text-2xl font-black text-slate-900">{avgRating}</h3>
+              <h3 className="text-2xl font-black text-slate-100">{avgRating}</h3>
             </div>
           </div>
         </Card>
       </div>
 
       {/* Enrollment Growth Chart */}
-      <Card className="p-6 border-slate-200 space-y-4">
-        <h2 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
-          <TrendingUp className="w-4.5 h-4.5 text-indigo-600" /> Monthly Enrollment Velocity
+      <Card className="p-6 border-slate-700/50 space-y-4">
+        <h2 className="text-base font-extrabold text-slate-100 flex items-center gap-2">
+          <TrendingUp className="w-4.5 h-4.5 text-indigo-400" /> Monthly Enrollment Velocity
         </h2>
 
         <div className="h-72 w-full pt-4">
@@ -163,9 +163,9 @@ export const InstructorAnalyticsPage: React.FC<InstructorAnalyticsPageProps> = (
       </Card>
 
       {/* Course Completion Breakdown Chart */}
-      <Card className="p-6 border-slate-200 space-y-4">
-        <h2 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
-          <Award className="w-4.5 h-4.5 text-emerald-600" /> Course Completion & Engagement Rates (%)
+      <Card className="p-6 border-slate-700/50 space-y-4">
+        <h2 className="text-base font-extrabold text-slate-100 flex items-center gap-2">
+          <Award className="w-4.5 h-4.5 text-emerald-400" /> Course Completion & Engagement Rates (%)
         </h2>
 
         <div className="h-72 w-full pt-4">

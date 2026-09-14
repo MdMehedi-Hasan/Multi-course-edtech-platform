@@ -113,8 +113,8 @@ export const AdminCategoriesPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Taxonomy & Category Management</h1>
-          <p className="text-xs text-slate-500 mt-1">Organize course taxonomy, manage custom tags, reorder hierarchy, and safeguard relationship data integrity.</p>
+          <h1 className="text-2xl font-extrabold text-slate-100 tracking-tight">Taxonomy & Category Management</h1>
+          <p className="text-xs text-slate-400 mt-1">Organize course taxonomy, manage custom tags, reorder hierarchy, and safeguard relationship data integrity.</p>
         </div>
         <Button variant="default" size="sm" onClick={() => handleOpenModal()}>
           <Plus className="w-4 h-4 mr-1.5" /> Add New Category
@@ -124,14 +124,14 @@ export const AdminCategoriesPage: React.FC = () => {
       {feedback && (
         <div
           className={`p-4 rounded-xl flex items-center justify-between text-xs font-semibold ${
-            feedback.type === 'success' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'
+            feedback.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
           }`}
         >
           <div className="flex items-center gap-2">
-            {feedback.type === 'error' && <AlertTriangle className="w-4 h-4 shrink-0 text-rose-600" />}
+            {feedback.type === 'error' && <AlertTriangle className="w-4 h-4 shrink-0 text-rose-400" />}
             <span>{feedback.message}</span>
           </div>
-          <button onClick={() => setFeedback(null)} className="p-1 hover:bg-slate-200/50 rounded">
+          <button onClick={() => setFeedback(null)} className="p-1 hover:bg-slate-700 rounded">
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -140,7 +140,7 @@ export const AdminCategoriesPage: React.FC = () => {
       {/* Categories Table */}
       <Card className="overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-600">
+          <table className="w-full text-left text-xs text-slate-400">
             <thead className="bg-slate-900 text-slate-300 font-bold uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="px-4 py-3.5 w-12 text-center">Order</th>
@@ -151,7 +151,7 @@ export const AdminCategoriesPage: React.FC = () => {
                 <th className="px-5 py-3.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-700/50">
               {isLoading ? (
                 <tr>
                   <td colSpan={6} className="text-center py-12 text-slate-400">Loading categories...</td>
@@ -162,52 +162,52 @@ export const AdminCategoriesPage: React.FC = () => {
                 </tr>
               ) : (
                 categories.map((c, idx) => (
-                  <tr key={c.id} className="hover:bg-slate-50/80 transition-colors">
+                  <tr key={c.id} className="hover:bg-slate-700/40 transition-colors">
                     <td className="px-4 py-4 text-center">
                       <div className="flex flex-col items-center gap-1">
                         <button
                           onClick={() => handleReorder(idx, 'up')}
                           disabled={idx === 0}
-                          className="p-1 text-slate-400 hover:text-slate-800 disabled:opacity-20"
+                          className="p-1 text-slate-400 hover:text-slate-200 disabled:opacity-20"
                         >
                           <ArrowUp className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => handleReorder(idx, 'down')}
                           disabled={idx === categories.length - 1}
-                          className="p-1 text-slate-400 hover:text-slate-800 disabled:opacity-20"
+                          className="p-1 text-slate-400 hover:text-slate-200 disabled:opacity-20"
                         >
                           <ArrowDown className="w-3.5 h-3.5" />
                         </button>
                       </div>
                     </td>
 
-                    <td className="px-5 py-4 font-bold text-slate-900">
+                    <td className="px-5 py-4 font-bold text-slate-100">
                       <div>{c.name}</div>
                       <div className="text-[11px] text-slate-400 font-normal line-clamp-1">{c.description || 'No description provided.'}</div>
                     </td>
 
-                    <td className="px-4 py-4 font-mono text-[11px] text-purple-700 font-bold">{c.slug}</td>
+                    <td className="px-4 py-4 font-mono text-[11px] text-purple-400 font-bold">{c.slug}</td>
 
-                    <td className="px-4 py-4 font-bold text-slate-800">
+                    <td className="px-4 py-4 font-bold text-slate-200">
                       {c.courseCount} Courses
                     </td>
 
                     <td className="px-4 py-4">
                       {c.isActive ? (
-                        <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Active</span>
+                        <span className="text-[10px] bg-emerald-500/10 text-emerald-400 font-bold px-2 py-0.5 rounded">Active</span>
                       ) : (
-                        <span className="text-[10px] bg-slate-200 text-slate-700 font-bold px-2 py-0.5 rounded">Disabled</span>
+                        <span className="text-[10px] bg-slate-700 text-slate-300 font-bold px-2 py-0.5 rounded">Disabled</span>
                       )}
                     </td>
 
                     <td className="px-5 py-4 text-right">
                       <div className="flex items-center justify-end gap-1.5">
                         <Button variant="ghost" size="sm" onClick={() => handleOpenModal(c)}>
-                          <Edit2 className="w-3.5 h-3.5 text-slate-600" />
+                          <Edit2 className="w-3.5 h-3.5 text-slate-400" />
                         </Button>
                         <Button variant="ghost" size="sm" onClick={() => handleDeleteCategory(c.id, c.name)}>
-                          <Trash2 className="w-3.5 h-3.5 text-slate-400 hover:text-rose-600" />
+                          <Trash2 className="w-3.5 h-3.5 text-slate-400 hover:text-rose-400" />
                         </Button>
                       </div>
                     </td>
@@ -224,46 +224,46 @@ export const AdminCategoriesPage: React.FC = () => {
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <Card className="w-full max-w-md p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b pb-3">
-              <h3 className="font-extrabold text-slate-900 text-base">
+              <h3 className="font-extrabold text-slate-100 text-base">
                 {editingCategory ? 'Edit Category' : 'Create Category'}
               </h3>
-              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-600">
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-400">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <form onSubmit={handleSaveCategory} className="space-y-4 text-xs">
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Category Name *</label>
+                <label className="block font-bold text-slate-300 mb-1">Category Name *</label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="E.g., Machine Learning & AI"
-                  className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full p-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Custom Slug (Optional)</label>
+                <label className="block font-bold text-slate-300 mb-1">Custom Slug (Optional)</label>
                 <input
                   type="text"
                   value={formData.slug}
                   onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                   placeholder="machine-learning-ai"
-                  className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-purple-600 font-mono"
+                  className="w-full p-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600 font-mono"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-700 mb-1">Description</label>
+                <label className="block font-bold text-slate-300 mb-1">Description</label>
                 <textarea
                   rows={3}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Brief summary of topics in this category..."
-                  className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full p-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600"
                 />
               </div>
 
@@ -273,9 +273,9 @@ export const AdminCategoriesPage: React.FC = () => {
                   id="isActive"
                   checked={formData.isActive}
                   onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                  className="rounded border-slate-300 text-purple-600 focus:ring-purple-500"
+                  className="rounded border-slate-600 text-purple-400 focus:ring-purple-500"
                 />
-                <label htmlFor="isActive" className="font-bold text-slate-800">
+                <label htmlFor="isActive" className="font-bold text-slate-200">
                   Active (Visible in course filters)
                 </label>
               </div>

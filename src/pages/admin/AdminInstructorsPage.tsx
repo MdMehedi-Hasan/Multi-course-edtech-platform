@@ -113,26 +113,26 @@ export const AdminInstructorsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Faculty & Instructor Governance</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-2xl font-extrabold text-slate-100 tracking-tight">Faculty & Instructor Governance</h1>
+          <p className="text-xs text-slate-400 mt-1">
             Review onboarding applications, promote verified candidates to instructors, and manage active faculty.
           </p>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 self-start">
+        <div className="flex items-center bg-slate-700/60 p-1 rounded-xl border border-slate-700/50 self-start">
           <button
             onClick={() => setActiveTab('APPLICATIONS')}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
               activeTab === 'APPLICATIONS'
-                ? 'bg-white text-indigo-700 shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-slate-800 text-indigo-400 shadow-xs'
+                : 'text-slate-400 hover:text-slate-100'
             }`}
           >
             <Clock className="w-3.5 h-3.5" />
             <span>Applications Queue</span>
             {applications.filter((a) => a.status === 'PENDING').length > 0 && (
-              <span className="ml-1 px-1.5 py-0.2 bg-amber-500 text-white rounded-full text-[10px] font-extrabold">
+              <span className="ml-1 px-1.5 py-0.2 bg-amber-500 text-slate-950 rounded-full text-[10px] font-extrabold">
                 {applications.filter((a) => a.status === 'PENDING').length}
               </span>
             )}
@@ -141,8 +141,8 @@ export const AdminInstructorsPage: React.FC = () => {
             onClick={() => setActiveTab('FACULTY')}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
               activeTab === 'FACULTY'
-                ? 'bg-white text-indigo-700 shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-slate-800 text-indigo-400 shadow-xs'
+                : 'text-slate-400 hover:text-slate-100'
             }`}
           >
             <UserCheck className="w-3.5 h-3.5" />
@@ -154,7 +154,7 @@ export const AdminInstructorsPage: React.FC = () => {
       {activeTab === 'APPLICATIONS' && (
         <div className="space-y-4">
           {/* Filter Bar */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 bg-white p-3.5 rounded-2xl border border-slate-200">
+          <div className="flex flex-col sm:flex-row items-center gap-3 bg-slate-800 p-3.5 rounded-2xl border border-slate-700/50">
             <div className="relative flex-1 w-full">
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
@@ -163,7 +163,7 @@ export const AdminInstructorsPage: React.FC = () => {
                 value={appSearch}
                 onChange={(e) => setAppSearch(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && fetchApplications()}
-                className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                className="w-full pl-9 pr-3.5 py-2 text-xs rounded-xl bg-slate-900/60 border border-slate-700/50 text-slate-100 placeholder:text-slate-500 focus:bg-slate-900/60 focus:outline-none focus:ring-2 focus:ring-indigo-600"
               />
             </div>
 
@@ -174,7 +174,7 @@ export const AdminInstructorsPage: React.FC = () => {
                   setAppStatusFilter(e.target.value);
                   setTimeout(fetchApplications, 50);
                 }}
-                className="px-3 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                className="px-3 py-2 text-xs rounded-xl bg-slate-900/60 border border-slate-700/50 font-semibold text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-600"
               >
                 <option value="ALL">All Statuses</option>
                 <option value="PENDING">Pending Review</option>
@@ -191,7 +191,7 @@ export const AdminInstructorsPage: React.FC = () => {
           {/* Applications Table */}
           <Card className="overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-slate-600">
+              <table className="w-full text-left text-xs text-slate-400">
                 <thead className="bg-slate-900 text-slate-300 font-bold uppercase tracking-wider text-[10px]">
                   <tr>
                     <th className="px-5 py-3.5">Candidate</th>
@@ -202,7 +202,7 @@ export const AdminInstructorsPage: React.FC = () => {
                     <th className="px-5 py-3.5 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
+                <tbody className="divide-y divide-slate-700/50">
                   {isLoadingApps ? (
                     <tr>
                       <td colSpan={6} className="text-center py-12 text-slate-400">
@@ -217,26 +217,26 @@ export const AdminInstructorsPage: React.FC = () => {
                     </tr>
                   ) : (
                     applications.map((app) => (
-                      <tr key={app.id} className="hover:bg-slate-50/80 transition-colors">
-                        <td className="px-5 py-4 font-bold text-slate-900">
+                      <tr key={app.id} className="hover:bg-slate-700/40 transition-colors">
+                        <td className="px-5 py-4 font-bold text-slate-100">
                           <div>
                             <p>{app.name}</p>
                             <p className="text-[11px] text-slate-400 font-normal">{app.email}</p>
-                            {app.headline && <p className="text-[10px] text-indigo-600 font-medium truncate max-w-xs">{app.headline}</p>}
+                            {app.headline && <p className="text-[10px] text-indigo-400 font-medium truncate max-w-xs">{app.headline}</p>}
                           </div>
                         </td>
 
-                        <td className="px-4 py-4 font-semibold text-slate-800">
-                          <span className="px-2.5 py-1 bg-slate-100 rounded-lg text-slate-700 text-[11px]">
+                        <td className="px-4 py-4 font-semibold text-slate-200">
+                          <span className="px-2.5 py-1 bg-slate-700/60 rounded-lg text-slate-300 text-[11px]">
                             {app.expertise}
                           </span>
                         </td>
 
-                        <td className="px-4 py-4 font-semibold text-slate-700">
+                        <td className="px-4 py-4 font-semibold text-slate-300">
                           {app.experienceYears} Years
                         </td>
 
-                        <td className="px-4 py-4 text-slate-500">
+                        <td className="px-4 py-4 text-slate-400">
                           {new Date(app.createdAt).toLocaleDateString()}
                         </td>
 
@@ -244,10 +244,10 @@ export const AdminInstructorsPage: React.FC = () => {
                           <span
                             className={`inline-flex items-center gap-1 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full ${
                               app.status === 'PENDING'
-                                ? 'bg-amber-100 text-amber-800'
+                                ? 'bg-amber-500/10 text-amber-400'
                                 : app.status === 'APPROVED'
-                                ? 'bg-emerald-100 text-emerald-800'
-                                : 'bg-rose-100 text-rose-800'
+                                ? 'bg-emerald-500/10 text-emerald-400'
+                                : 'bg-rose-500/10 text-rose-400'
                             }`}
                           >
                             {app.status === 'PENDING' && <Clock className="w-3 h-3" />}
@@ -285,7 +285,7 @@ export const AdminInstructorsPage: React.FC = () => {
                                     setRejectingAppId(app.id);
                                     setRejectionReason('');
                                   }}
-                                  className="text-xs text-rose-600 hover:bg-rose-50"
+                                  className="text-xs text-rose-400 hover:bg-rose-500/10"
                                 >
                                   Reject
                                 </Button>
@@ -306,7 +306,7 @@ export const AdminInstructorsPage: React.FC = () => {
       {activeTab === 'FACULTY' && (
         <Card className="overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-slate-600">
+            <table className="w-full text-left text-xs text-slate-400">
               <thead className="bg-slate-900 text-slate-300 font-bold uppercase tracking-wider text-[10px]">
                 <tr>
                   <th className="px-5 py-3.5">Instructor</th>
@@ -318,7 +318,7 @@ export const AdminInstructorsPage: React.FC = () => {
                   <th className="px-5 py-3.5 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-700/50">
                 {isLoadingFaculty ? (
                   <tr>
                     <td colSpan={7} className="text-center py-12 text-slate-400">
@@ -333,9 +333,9 @@ export const AdminInstructorsPage: React.FC = () => {
                   </tr>
                 ) : (
                   instructors.map((inst) => (
-                    <tr key={inst.id} className="hover:bg-slate-50/80 transition-colors">
-                      <td className="px-5 py-4 font-bold text-slate-900 flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-extrabold text-xs shrink-0 overflow-hidden">
+                    <tr key={inst.id} className="hover:bg-slate-700/40 transition-colors">
+                      <td className="px-5 py-4 font-bold text-slate-100 flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center font-extrabold text-xs shrink-0 overflow-hidden">
                           {inst.avatarUrl ? (
                             <img src={inst.avatarUrl} alt={inst.name} className="w-full h-full object-cover" />
                           ) : (
@@ -348,27 +348,27 @@ export const AdminInstructorsPage: React.FC = () => {
                         </div>
                       </td>
 
-                      <td className="px-4 py-4 font-bold text-slate-800">{inst.courseCount} Courses</td>
-                      <td className="px-4 py-4 font-bold text-purple-700">{inst.totalStudents} Students</td>
+                      <td className="px-4 py-4 font-bold text-slate-200">{inst.courseCount} Courses</td>
+                      <td className="px-4 py-4 font-bold text-purple-400">{inst.totalStudents} Students</td>
 
                       <td className="px-4 py-4">
-                        <div className="flex items-center gap-1 font-bold text-amber-600">
-                          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                        <div className="flex items-center gap-1 font-bold text-amber-400">
+                          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                           <span>{inst.avgRating || 'N/A'}</span>
                         </div>
                       </td>
 
-                      <td className="px-4 py-4 font-bold text-emerald-700">
+                      <td className="px-4 py-4 font-bold text-emerald-400">
                         ${inst.totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                       </td>
 
                       <td className="px-4 py-4">
                         {inst.isInstructorApproved ? (
-                          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
                             <CheckCircle2 className="w-3 h-3" /> Approved Faculty
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+                          <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded">
                             Pending Approval
                           </span>
                         )}
@@ -401,25 +401,25 @@ export const AdminInstructorsPage: React.FC = () => {
       {selectedApplication && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-150">
           <Card className="w-full max-w-2xl p-6 sm:p-8 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start border-b border-slate-100 pb-4">
+            <div className="flex justify-between items-start border-b border-slate-700/50 pb-4">
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="font-extrabold text-slate-900 text-lg">{selectedApplication.name}</h3>
+                  <h3 className="font-extrabold text-slate-100 text-lg">{selectedApplication.name}</h3>
                   <span
                     className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
                       selectedApplication.status === 'PENDING'
-                        ? 'bg-amber-100 text-amber-800'
+                        ? 'bg-amber-500/10 text-amber-400'
                         : selectedApplication.status === 'APPROVED'
-                        ? 'bg-emerald-100 text-emerald-800'
-                        : 'bg-rose-100 text-rose-800'
+                        ? 'bg-emerald-500/10 text-emerald-400'
+                        : 'bg-rose-500/10 text-rose-400'
                     }`}
                   >
                     {selectedApplication.status}
                   </span>
                 </div>
-                <p className="text-xs text-slate-500">{selectedApplication.email}</p>
+                <p className="text-xs text-slate-400">{selectedApplication.email}</p>
                 {selectedApplication.headline && (
-                  <p className="text-xs text-indigo-600 font-semibold mt-0.5">{selectedApplication.headline}</p>
+                  <p className="text-xs text-indigo-400 font-semibold mt-0.5">{selectedApplication.headline}</p>
                 )}
               </div>
               <Button variant="ghost" size="sm" onClick={() => setSelectedApplication(null)}>
@@ -428,37 +428,37 @@ export const AdminInstructorsPage: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-4 text-xs">
-              <div className="p-3 bg-slate-50 rounded-xl">
+              <div className="p-3 bg-slate-800/60 rounded-xl">
                 <span className="text-slate-400 font-semibold block uppercase text-[10px]">Expertise</span>
-                <span className="font-bold text-slate-800">{selectedApplication.expertise}</span>
+                <span className="font-bold text-slate-200">{selectedApplication.expertise}</span>
               </div>
-              <div className="p-3 bg-slate-50 rounded-xl">
+              <div className="p-3 bg-slate-800/60 rounded-xl">
                 <span className="text-slate-400 font-semibold block uppercase text-[10px]">Experience</span>
-                <span className="font-bold text-slate-800">{selectedApplication.experienceYears} Years</span>
+                <span className="font-bold text-slate-200">{selectedApplication.experienceYears} Years</span>
               </div>
             </div>
 
             {(selectedApplication.website || selectedApplication.github || selectedApplication.linkedin) && (
               <div className="space-y-1.5 text-xs">
-                <span className="font-bold text-slate-700 uppercase tracking-wider text-[10px]">Links & Profiles</span>
+                <span className="font-bold text-slate-300 uppercase tracking-wider text-[10px]">Links & Profiles</span>
                 <div className="flex flex-wrap gap-2">
                   {selectedApplication.website && (
                     <a
                       href={selectedApplication.website}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-700/60 hover:bg-slate-700 text-slate-300 rounded-lg font-medium"
                     >
                       <ExternalLink className="w-3 h-3" /> Website
                     </a>
                   )}
                   {selectedApplication.github && (
-                    <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg font-medium">
+                    <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-700/60 text-slate-300 rounded-lg font-medium">
                       GitHub: {selectedApplication.github}
                     </span>
                   )}
                   {selectedApplication.linkedin && (
-                    <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg font-medium">
+                    <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-slate-700/60 text-slate-300 rounded-lg font-medium">
                       LinkedIn: {selectedApplication.linkedin}
                     </span>
                   )}
@@ -467,21 +467,21 @@ export const AdminInstructorsPage: React.FC = () => {
             )}
 
             <div className="space-y-1.5">
-              <span className="font-bold text-slate-700 uppercase tracking-wider text-[10px]">Instructor Bio</span>
-              <p className="p-3.5 bg-slate-50 rounded-xl text-xs text-slate-700 leading-relaxed">
+              <span className="font-bold text-slate-300 uppercase tracking-wider text-[10px]">Instructor Bio</span>
+              <p className="p-3.5 bg-slate-800/60 rounded-xl text-xs text-slate-300 leading-relaxed">
                 {selectedApplication.bio}
               </p>
             </div>
 
             <div className="space-y-1.5">
-              <span className="font-bold text-slate-700 uppercase tracking-wider text-[10px]">Course Proposal Concept</span>
-              <p className="p-3.5 bg-indigo-50/60 border border-indigo-100 rounded-xl text-xs text-slate-800 leading-relaxed font-medium">
+              <span className="font-bold text-slate-300 uppercase tracking-wider text-[10px]">Course Proposal Concept</span>
+              <p className="p-3.5 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-xs text-slate-200 leading-relaxed font-medium">
                 {selectedApplication.message}
               </p>
             </div>
 
             {selectedApplication.status === 'PENDING' && (
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-slate-700/50 flex items-center justify-end gap-3">
                 <Button
                   variant="outline"
                   size="sm"
@@ -489,7 +489,7 @@ export const AdminInstructorsPage: React.FC = () => {
                     setRejectingAppId(selectedApplication.id);
                     setRejectionReason('');
                   }}
-                  className="text-rose-600 hover:bg-rose-50"
+                  className="text-rose-400 hover:bg-rose-500/10"
                 >
                   Reject Application
                 </Button>
@@ -511,8 +511,8 @@ export const AdminInstructorsPage: React.FC = () => {
       {rejectingAppId && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <Card className="w-full max-w-md p-6 shadow-2xl space-y-4">
-            <h3 className="font-bold text-slate-900 text-base">Reject Instructor Application</h3>
-            <p className="text-xs text-slate-500">
+            <h3 className="font-bold text-slate-100 text-base">Reject Instructor Application</h3>
+            <p className="text-xs text-slate-400">
               Provide feedback or a reason for the applicant explaining why the application was declined.
             </p>
 
@@ -521,7 +521,7 @@ export const AdminInstructorsPage: React.FC = () => {
               placeholder="e.g. Please provide a more detailed syllabus and verify your portfolio credentials..."
               value={rejectionReason}
               onChange={(e) => setRejectionReason(e.target.value)}
-              className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500"
+              className="w-full px-3 py-2 text-xs rounded-xl border border-slate-700/50 bg-slate-900/60 text-slate-100 placeholder:text-slate-500 focus:bg-slate-900/60 focus:outline-none focus:ring-2 focus:ring-rose-500"
             />
 
             <div className="flex justify-end gap-2 pt-2">
@@ -547,8 +547,8 @@ export const AdminInstructorsPage: React.FC = () => {
           <Card className="w-full max-w-2xl p-6 shadow-2xl space-y-4">
             <div className="flex justify-between items-start border-b pb-3">
               <div>
-                <h3 className="font-extrabold text-slate-900 text-base">{selectedInstructor.name}</h3>
-                <p className="text-xs text-slate-500">{selectedInstructor.email}</p>
+                <h3 className="font-extrabold text-slate-100 text-base">{selectedInstructor.name}</h3>
+                <p className="text-xs text-slate-400">{selectedInstructor.email}</p>
               </div>
               <Button variant="ghost" size="sm" onClick={() => setSelectedInstructor(null)}>
                 Close
@@ -556,12 +556,12 @@ export const AdminInstructorsPage: React.FC = () => {
             </div>
 
             <div>
-              <h4 className="font-bold text-slate-800 text-xs uppercase mb-2">Authored Curriculums</h4>
+              <h4 className="font-bold text-slate-200 text-xs uppercase mb-2">Authored Curriculums</h4>
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {selectedInstructor.authoredCourses?.map((c: any) => (
-                  <div key={c.id} className="p-3 bg-slate-50 border rounded-xl flex items-center justify-between text-xs">
-                    <span className="font-bold text-slate-800">{c.title}</span>
-                    <span className="font-extrabold text-purple-700">${c.price}</span>
+                  <div key={c.id} className="p-3 bg-slate-800/60 border-slate-700/50 rounded-xl flex items-center justify-between text-xs">
+                    <span className="font-bold text-slate-200">{c.title}</span>
+                    <span className="font-extrabold text-purple-400">${c.price}</span>
                   </div>
                 ))}
               </div>

@@ -59,11 +59,11 @@ export const CreateCoursePage: React.FC<CreateCoursePageProps> = ({ onNavigate }
   return (
     <div className="space-y-6 max-w-3xl">
       <div>
-        <h1 className="text-2xl font-extrabold text-slate-900">Create New Course Curriculum</h1>
-        <p className="text-xs text-slate-500 mt-1">Publish a new engineering course with default video modules.</p>
+        <h1 className="text-2xl font-extrabold text-slate-100">Create New Course Curriculum</h1>
+        <p className="text-xs text-slate-400 mt-1">Publish a new engineering course with default video modules.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+      <form onSubmit={handleSubmit} className="bg-slate-900/60 p-8 rounded-3xl border border-slate-700/50 shadow-sm space-y-4">
         <Input
           label="Course Title"
           placeholder="e.g., Enterprise Microservices Architecture"
@@ -79,13 +79,13 @@ export const CreateCoursePage: React.FC<CreateCoursePageProps> = ({ onNavigate }
         />
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider">Full Syllabus Description</label>
+          <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Full Syllabus Description</label>
           <textarea
             rows={4}
             placeholder="Detailed course objectives and prerequisites..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500"
+            className="w-full px-3.5 py-2.5 text-sm bg-slate-900/60 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500"
           />
         </div>
 
@@ -98,27 +98,27 @@ export const CreateCoursePage: React.FC<CreateCoursePageProps> = ({ onNavigate }
           />
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider">Difficulty Level</label>
+            <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Difficulty Level</label>
             <select
               value={level}
               onChange={(e) => setLevel(e.target.value as CourseLevel)}
-              className="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3.5 py-2.5 text-sm bg-slate-900/60 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500"
             >
-              <option value="BEGINNER">Beginner</option>
-              <option value="INTERMEDIATE">Intermediate</option>
-              <option value="ADVANCED">Advanced</option>
+              <option className="bg-slate-900 text-slate-100" value="BEGINNER">Beginner</option>
+              <option className="bg-slate-900 text-slate-100" value="INTERMEDIATE">Intermediate</option>
+              <option className="bg-slate-900 text-slate-100" value="ADVANCED">Advanced</option>
             </select>
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider">Domain Category</label>
+            <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Domain Category</label>
             <select
               value={categoryId}
               onChange={(e) => setCategoryId(e.target.value)}
-              className="w-full px-3.5 py-2.5 text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="w-full px-3.5 py-2.5 text-sm bg-slate-900/60 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500"
             >
               {categories.map((c) => (
-                <option key={c.id} value={c.id}>
+                <option className="bg-slate-900 text-slate-100" key={c.id} value={c.id}>
                   {c.name}
                 </option>
               ))}

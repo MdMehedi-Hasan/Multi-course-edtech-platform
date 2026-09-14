@@ -43,8 +43,8 @@ export const AdminStudentsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Student Roster Directory</h1>
-        <p className="text-xs text-slate-500 mt-1">Directory of enrolled learners across all courses.</p>
+        <h1 className="text-2xl font-extrabold text-slate-100 tracking-tight">Student Roster Directory</h1>
+        <p className="text-xs text-slate-400 mt-1">Directory of enrolled learners across all courses.</p>
       </div>
 
       <Card className="p-4">
@@ -56,7 +56,7 @@ export const AdminStudentsPage: React.FC = () => {
               placeholder="Search student by name or email..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs outline-none focus:ring-2 focus:ring-purple-600"
+              className="w-full pl-9 pr-4 py-2 bg-slate-900/60 border border-slate-700/50 rounded-xl text-xs text-slate-100 placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-purple-600"
             />
           </div>
           <Button type="submit" variant="default" size="sm">Search</Button>
@@ -65,7 +65,7 @@ export const AdminStudentsPage: React.FC = () => {
 
       <Card className="overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-600">
+          <table className="w-full text-left text-xs text-slate-400">
             <thead className="bg-slate-900 text-slate-300 font-bold uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="px-5 py-3.5">Student</th>
@@ -76,7 +76,7 @@ export const AdminStudentsPage: React.FC = () => {
                 <th className="px-5 py-3.5 text-right">Inspect</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-700/50">
               {isLoading ? (
                 <tr>
                   <td colSpan={6} className="text-center py-12 text-slate-400">Loading student directory...</td>
@@ -87,20 +87,20 @@ export const AdminStudentsPage: React.FC = () => {
                 </tr>
               ) : (
                 students.map((st) => (
-                  <tr key={st.id} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="px-5 py-4 font-bold text-slate-900 flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs shrink-0">
+                  <tr key={st.id} className="hover:bg-slate-700/40 transition-colors">
+                    <td className="px-5 py-4 font-bold text-slate-100 flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs shrink-0">
                         {st.name.substring(0, 2).toUpperCase()}
                       </div>
                       <span>{st.name}</span>
                     </td>
-                    <td className="px-4 py-4 text-slate-500">{st.email}</td>
-                    <td className="px-4 py-4 font-bold text-purple-700">{st.enrollmentCount} Enrollments</td>
+                    <td className="px-4 py-4 text-slate-400">{st.email}</td>
+                    <td className="px-4 py-4 font-bold text-purple-400">{st.enrollmentCount} Enrollments</td>
                     <td className="px-4 py-4">
                       {st.isSuspended ? (
-                        <span className="text-[10px] bg-rose-100 text-rose-800 font-bold px-2 py-0.5 rounded">Suspended</span>
+                        <span className="text-[10px] bg-rose-500/10 text-rose-400 font-bold px-2 py-0.5 rounded">Suspended</span>
                       ) : (
-                        <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Active</span>
+                        <span className="text-[10px] bg-emerald-500/10 text-emerald-400 font-bold px-2 py-0.5 rounded">Active</span>
                       )}
                     </td>
                     <td className="px-4 py-4 text-slate-400">{new Date(st.createdAt).toLocaleDateString()}</td>
@@ -123,19 +123,19 @@ export const AdminStudentsPage: React.FC = () => {
           <Card className="w-full max-w-xl p-6 shadow-2xl space-y-4">
             <div className="flex justify-between items-start border-b pb-3">
               <div>
-                <h3 className="font-extrabold text-slate-900 text-base">{selectedStudent.name}</h3>
-                <p className="text-xs text-slate-500">{selectedStudent.email}</p>
+                <h3 className="font-extrabold text-slate-100 text-base">{selectedStudent.name}</h3>
+                <p className="text-xs text-slate-400">{selectedStudent.email}</p>
               </div>
               <Button variant="ghost" size="sm" onClick={() => setSelectedStudent(null)}>Close</Button>
             </div>
 
             <div>
-              <h4 className="font-bold text-slate-800 text-xs uppercase mb-2">Enrolled Courses ({selectedStudent.enrollments?.length || 0})</h4>
+              <h4 className="font-bold text-slate-200 text-xs uppercase mb-2">Enrolled Courses ({selectedStudent.enrollments?.length || 0})</h4>
               <div className="space-y-2 max-h-56 overflow-y-auto">
                 {selectedStudent.enrollments?.map((e: any) => (
-                  <div key={e.id} className="p-3 bg-slate-50 border rounded-xl flex items-center justify-between text-xs">
-                    <span className="font-bold text-slate-800">{e.course?.title}</span>
-                    <span className="text-purple-700 font-extrabold">{e.progress}% Complete</span>
+                  <div key={e.id} className="p-3 bg-slate-800/60 border-slate-700/50 rounded-xl flex items-center justify-between text-xs">
+                    <span className="font-bold text-slate-200">{e.course?.title}</span>
+                    <span className="text-purple-400 font-extrabold">{e.progress}% Complete</span>
                   </div>
                 ))}
               </div>
